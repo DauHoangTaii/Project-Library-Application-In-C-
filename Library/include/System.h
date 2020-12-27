@@ -1,7 +1,7 @@
 #ifndef SYSTEM_H
 #define SYSTEM_H
 #define ADMINUSER "admin"
-#define ADMINPASSWORD "admin123"
+#define ADMINPASSWORD "admin"
 
 #define USER "user"
 #define USERPASSWORD "user123"
@@ -21,6 +21,7 @@ class System
         void menu_user_manager();
         void menu_book_manager();
         void menu_user();
+        void menu_worker_manager();
         string username;
         string password;
 };
