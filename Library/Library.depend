@@ -1,0 +1,15 @@
+# depslib dependency file v1.0
+1609046017 source:c:\users\admin\desktop\c++\library\main.cpp
+	<iostream>
+	"System.h"
+
+1609045737 c:\users\admin\desktop\c++\library\include\system.h
+	<iostream>
+
+1609046361 source:c:\users\admin\desktop\c++\library\src\system.cpp
+	"System.h"
+	<iostream>
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+
