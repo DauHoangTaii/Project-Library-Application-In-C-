@@ -3,6 +3,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include "Book.h"
+
 using namespace std;
 
 
@@ -194,14 +196,14 @@ void System::menu_book_manager()
         cout << "Enter your choice: ";
         cin >> choice;
     }
-
+    Book bk;
     switch(choice)
     {
     case 0:
         cout << "Thank you for using it !!";
         exit(0);
     case 1:
-        cout << "Day la cho add";
+        bk.wirteBook();
         break;
     case 2:
         cout << "day la cho update";
@@ -213,7 +215,8 @@ void System::menu_book_manager()
         cout << "day la cho search";
         break;
     case 5:
-        cout << "day la cho show ";
+        system("cls");
+        bk.display();
         break;
     case 6:
         menu_admin_manager();
