@@ -18,6 +18,7 @@ class Book
         void wirteBook();
         void display();
         void report();
+        int retId();
     protected:
 
     private:

@@ -36,17 +36,25 @@ bool System::login()
 
 void System::menu_main()
 {
-    int choice;
+    loop:
     system("cls");
+    fflush(stdin);
     cout << "---------------Library Management Version 1.0--------------"<<endl;
     cout << "[1]. Login With Admin " << endl;
     cout << "[2]. Login With User " << endl;
-    cout << "[0]. Exit " << endl;
+    cout << "[3]. Exit " << endl;
+
+    int choice = -1;
+
     cout << "Enter your choice: ";
     cin >> choice;
-    while(choice < 0 || choice > 2)
+    while(choice < 1 || choice > 3)
     {
+        cin.clear();
+        fflush(stdin);
         cout << "Error: Invalid Choice. Please try again!" << endl;
+        system("pause");
+        goto loop;
         cout << "Enter your choice: ";
         cin >> choice;
     }
@@ -66,7 +74,7 @@ void System::menu_main()
     case 2:
         menu_user();
         break;
-    case 0:
+    case 3:
         cout << "Thank you for using it!!";
         exit(0);
     }
@@ -92,6 +100,8 @@ void System::menu_admin_manager()
 
     while(choice < 1 || choice > 4)
     {
+        cin.clear();
+        fflush(stdin);
         cout << "Error: Invalid Choice. Please try again!" << endl;
         cout << "Enter your choice: ";
         cin >> choice;
@@ -115,7 +125,7 @@ void System::menu_admin_manager()
 
 void System::menu_user_manager()
 {
-    int choice;
+    int choice = -1;
 
     system("cls");
 
@@ -125,13 +135,15 @@ void System::menu_user_manager()
     cout << "[4]. Search user" << endl;
     cout << "[5]. Show user" << endl;
     cout << "[6]. Back" << endl;
-    cout << "[0]. Exit" << endl;
+    cout << "[7]. Exit" << endl;
 
     cout << "Enter your choice: ";
     cin >> choice;
 
-    while(choice < 0 || choice > 6)
+    while(choice < 1 || choice > 7)
     {
+        cin.clear();
+        fflush(stdin);
         cout << "Error: Invalid Choice. Please try again!" << endl;
         cout << "Enter your choice: ";
         cin >> choice;
@@ -139,9 +151,6 @@ void System::menu_user_manager()
 
     switch(choice)
     {
-    case 0:
-        cout << "Thank you for using it !!";
-        exit(0);
     case 1:
         cout << "Day la cho add";
         break;
@@ -160,6 +169,9 @@ void System::menu_user_manager()
     case 6:
         menu_admin_manager();
         break;
+    case 7:
+        cout << "Thank you for using it !!";
+        exit(0);
     }
 }
 
@@ -175,6 +187,7 @@ void System::menu_user()
 
 void System::menu_book_manager()
 {
+    loop:
     int choice;
 
     system("cls");
@@ -185,13 +198,15 @@ void System::menu_book_manager()
     cout << "[4]. Search book" << endl;
     cout << "[5]. Show book" << endl;
     cout << "[6]. Back" << endl;
-    cout << "[0]. Exit" << endl;
+    cout << "[7]. Exit" << endl;
 
     cout << "Enter your choice: ";
     cin >>choice;
 
-    while(choice < 0 || choice > 6)
+    while(choice < 1 || choice > 7)
     {
+        cin.clear();
+        fflush(stdin);
         cout << "Error: Invalid Choice. Please try again!" << endl;
         cout << "Enter your choice: ";
         cin >> choice;
@@ -199,28 +214,29 @@ void System::menu_book_manager()
     Book bk;
     switch(choice)
     {
-    case 0:
-        cout << "Thank you for using it !!";
-        exit(0);
     case 1:
         bk.wirteBook();
         break;
     case 2:
-        cout << "day la cho update";
+        bk.updateBook();
         break;
     case 3:
-        cout << "day la cho delete";
-        break;
+        bk.deleteBook();
+        goto loop;
     case 4:
         cout << "day la cho search";
         break;
     case 5:
         system("cls");
         bk.display();
-        break;
+        cout << "Press any key to return menu book. " << endl;
+        goto loop;
     case 6:
         menu_admin_manager();
         break;
+    case 7:
+        cout << "Thank you for using it !!";
+        exit(0);
     }
 
 }
