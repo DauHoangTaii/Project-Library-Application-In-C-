@@ -6,6 +6,7 @@
 #include <iomanip>
 #include <conio.h>
 #include<stdio.h>
+#include <cstdio>
 
 using namespace std;
 
@@ -43,63 +44,120 @@ void Book::addBook()
 void Book::updateBook()
 {
     system("cls");
+    fstream File;
+    bool found=false;
     int n;
-	int found=0;
+    string s;
+
 	cout << "---------------Update Book----------------" << endl;
 	cout << "Enter id of book update: ";
 	cin >> n;
-	fp.open("book.dat",ios::in|ios::out);
-	while(fp.read((char*)&bk,sizeof(Book)) && found==0)
-	{
-		if(strcmpi((char*)bk.retId(),(char*)n)==0)
-		{
-			bk.showBook();
-			cout << "Enter The New Details Of Book" << endl;
-			bk.addBook();
-			int pos=-1*sizeof(bk);
-		    	fp.seekp(pos,ios::cur);
-		    	fp.write((char*)&bk,sizeof(Book));
-		    	cout << "Update Successfully";
-		    	found=1;
-		}
-	}
+	cin.ignore();
+    cout << "Enter name of book update: ";
+    getline(cin,s);
 
-    	fp.close();
-    	if(found==0)
-    		cout << "Book not found";
-    	getch();
+    File.open("book.dat",ios::binary|ios::in|ios::out);
+	if(!File)
+	{
+		cout<<"File could not be open !! Press any Key...";
+		return;
+	}
+	while(!File.eof() && found==false)
+	{
+		File.read(reinterpret_cast<char *> (&bk), sizeof(Book));
+		if(bk.retId()==n && bk.retName()==s)
+		{
+		    cout << "Current data" << endl;
+			bk.showBook();
+			system("pause");
+			cout << "Enter The New Details of Book"<<endl;
+			bk.addBook();
+			int pos=(-1)*static_cast<int>(sizeof(Book));
+			File.seekp(pos,ios::cur);
+		    File.write(reinterpret_cast<char *> (&bk), sizeof(Book));
+		    cout << "Update Successfully !!";
+		    found=true;
+		  }
+	}
+	File.close();
+	if(found==false)
+		cout<<"Record Not Found ";
 }
 
 void Book::deleteBook()
 {
     system("cls");
     int n;
+    string s;
+
 	cout << "----------------DELETE BOOK----------------" << endl;
 	cout << "Enter id of book delete: ";
 	cin>>n;
-	fp.open("book.dat",ios::in|ios::out);
-	fstream fp2;
-	fp2.open("Temp.dat",ios::out);
-	fp.seekg(1,ios::beg);
-	while(fp.read((char*)&bk,sizeof(Book)))
+	cin.ignore();
+	cout << "Enter name of book delete: ";
+	getline(cin,s);
+
+	ifstream inFile;
+	ofstream outFile;
+	inFile.open("book.dat",ios::binary);
+	if(!inFile)
 	{
-		if(strcmpi((char*)bk.retId(),(char*)n)!=0)
+		cout << "File could not be open !! Press any Key...";
+		return;
+	}
+	outFile.open("Temp.dat",ios::binary);
+	inFile.seekg(0,ios::beg);
+	while(inFile.read(reinterpret_cast<char *> (&bk), sizeof(Book)))
+	{
+		if(bk.retId()!=n && bk.retName() != s)
 		{
-			fp2.write((char*)&bk,sizeof(Book));
+			outFile.write(reinterpret_cast<char *> (&bk), sizeof(Book));
 		}
 	}
-
-	fp2.close();
-    	fp.close();
-    	remove("book.dat");
-    	rename("Temp.dat","book.dat");
-    	cout << "Deleted Successfully" << endl;
-    	system("pause");
+    inFile.close();
+	outFile.close();
+	remove("book.dat");
+	rename("Temp.dat","book.dat");
+	cout << "Delete Successfully" << endl;
+    system("pause");
 }
 
 void Book::searchBook()
 {
+    int n;
+    string s;
+    bool found=false;
+	fstream File;
+    system("cls");
 
+	cout << "---------------Search Book With ID-------------" << endl;
+	cout << "Enter id of book: ";
+	cin >> n;
+	cin.ignore();
+    cout << "Enter name of book: ";
+    getline(cin,s);
+
+    File.open("book.dat",ios::binary|ios::in|ios::out);
+	if(!File)
+	{
+		cout<<"File could not be open !! Press any Key...";
+		return;
+	}
+	while(!File.eof() && found==false)
+	{
+		File.read(reinterpret_cast<char *> (&bk), sizeof(Book));
+		if(bk.retId()==n)
+		{
+		    system("cls");
+			bk.showBook();
+			system("pause");
+		    found=true;
+		  }
+	}
+	File.close();
+	if(found==false)
+		cout << "Record Not Found " << endl;
+		system("pause");
 }
 
 void Book::showBook()
@@ -118,8 +176,11 @@ void Book::wirteBook()
 	do
 	{
 		bk.addBook();
-		fp.write((char*)&bk,sizeof(Book));
-		cout << "\n\nDo you want to add more record..(y/n?)";
+		fp.write(reinterpret_cast<char*>(&bk),sizeof(Book));
+		cout << "Add Book Successfully !" << endl;
+		system("pause");
+		system("cls");
+		cout << "Do you want to add more record..(y/n?)";
 		cin >> ch;
 	}while(ch=='y'||ch=='Y');
 	fp.close();
@@ -140,10 +201,23 @@ void Book::display()
      	fp.close();
      	getch();
 }
+
 int Book::retId()
 {
     return id;
 }
+
+string Book::retName()
+{
+    return name;
+}
+
+void Book::format()
+{
+
+}
+
+
 void Book::report()
 {
     cout << id << setw(25) << name << setw(25) << brand << setw(20) << author << setw(25) << price << endl;

@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <string.h>
 #include "Book.h"
+#include "User.h"
 
 using namespace std;
 
@@ -125,8 +126,8 @@ void System::menu_admin_manager()
 
 void System::menu_user_manager()
 {
+    loop:
     int choice = -1;
-
     system("cls");
 
     cout << "[1]. Add user" << endl;
@@ -149,23 +150,24 @@ void System::menu_user_manager()
         cin >> choice;
     }
 
+    User us;
     switch(choice)
     {
     case 1:
-        cout << "Day la cho add";
-        break;
+        us.write_user();
+        goto loop;
     case 2:
-        cout << "day la cho update";
-        break;
+        us.update_user();
+        goto loop;
     case 3:
-        cout << "day la cho delete";
-        break;
+        us.delete_user();
+        goto loop;
     case 4:
-        cout << "day la cho search";
-        break;
+        us.search_user();
+        goto loop;
     case 5:
-        cout << "day la cho show ";
-        break;
+        us.display();
+        goto loop;
     case 6:
         menu_admin_manager();
         break;
@@ -216,7 +218,7 @@ void System::menu_book_manager()
     {
     case 1:
         bk.wirteBook();
-        break;
+        goto loop;
     case 2:
         bk.updateBook();
         break;
@@ -224,7 +226,8 @@ void System::menu_book_manager()
         bk.deleteBook();
         goto loop;
     case 4:
-        cout << "day la cho search";
+        bk.searchBook();
+        goto loop;
         break;
     case 5:
         system("cls");

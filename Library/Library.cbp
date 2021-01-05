@@ -35,10 +35,14 @@
 			<Add option="-fexceptions" />
 		</Compiler>
 		<Unit filename="include/Book.h" />
+		<Unit filename="include/Person.h" />
 		<Unit filename="include/System.h" />
+		<Unit filename="include/User.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/Book.cpp" />
+		<Unit filename="src/Person.cpp" />
 		<Unit filename="src/System.cpp" />
+		<Unit filename="src/User.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />

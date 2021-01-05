@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <string.h>
+#include "General.h"
 using namespace std;
 
 class Book
@@ -19,6 +20,8 @@ class Book
         void display();
         void report();
         int retId();
+        string retName();
+        void format();
     protected:
 
     private:

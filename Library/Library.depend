@@ -20,19 +20,21 @@
 1609086444 c:\users\admin\desktop\library-application\library\include\system.h
 	<iostream>
 
-1609430604 source:c:\users\admin\desktop\library-application\library\src\system.cpp
+1609844946 source:c:\users\admin\desktop\library-application\library\src\system.cpp
 	"System.h"
 	<iostream>
 	<stdlib.h>
 	<stdio.h>
 	<string.h>
 	"Book.h"
+	"User.h"
 
-1609428687 c:\users\admin\desktop\library-application\library\include\book.h
+1609846175 c:\users\admin\desktop\library-application\library\include\book.h
 	<iostream>
 	<string.h>
+	"General.h"
 
-1609430929 source:c:\users\admin\desktop\library-application\library\src\book.cpp
+1609846448 source:c:\users\admin\desktop\library-application\library\src\book.cpp
 	"Book.h"
 	<iostream>
 	<stdlib.h>
@@ -40,5 +42,60 @@
 	<fstream>
 	<iomanip>
 	<conio.h>
+	<stdio.h>
+	<cstdio>
+
+1609770485 source:c:\users\admin\desktop\library-application\library\src\person.cpp
+	"Person.h"
+	<iostream>
+	<stdlib.h>
+	<string>
+	<fstream>
+	<iomanip>
+	<conio.h>
+	<stdio.h>
+	<cstdio>
+
+1609823861 c:\users\admin\desktop\library-application\library\include\person.h
+	<string.h>
+	<iostream>
+
+1609848707 source:c:\users\admin\desktop\library-application\library\src\user.cpp
+	"User.h"
+	"Person.h"
+	<iostream>
+	<stdlib.h>
+	<string>
+	<fstream>
+	<iomanip>
+	<conio.h>
+	<stdio.h>
+	<cstdio>
+
+1609841358 c:\users\admin\desktop\library-application\library\include\user.h
+	"Person.h"
+	"Date.h"
+	<iostream>
+
+1609822744 c:\users\admin\desktop\library-application\library\include\date.h
+	<iostream>
+	<fstream>
+
+1609825120 c:\users\admin\desktop\library-application\library\include\usermanager.h
+	<vector>
+	"User.h"
+	<stdio.h>
+	<stdlib.h>
+	"System.h"
+
+1609822757 source:c:\users\admin\desktop\library-application\library\src\date.cpp
+	"Date.h"
+
+1609822341 source:c:\users\admin\desktop\library-application\library\src\general.cpp
+	"General.h"
+
+1609825054 c:\users\admin\desktop\library-application\library\include\general.h
+	<string>
+	<iostream>
 	<stdio.h>
 
