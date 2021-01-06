@@ -24,7 +24,7 @@ fstream fp,fp1;
 Book bk;
 
 
-void Book::addBook()
+void Book::addBook() //menu add book
 {
     system("cls");
     cout << "----------New Book----------" << endl;
@@ -42,7 +42,7 @@ void Book::addBook()
     format();
 }
 
-void Book::updateBook()
+void Book::updateBook() //update book with id and name in file
 {
     system("cls");
     fstream File;
@@ -97,7 +97,7 @@ void Book::updateBook()
 		system("pause");
 }
 
-void Book::deleteBook()
+void Book::deleteBook() //delete book with id and name in file
 {
     system("cls");
     int n;
@@ -145,7 +145,7 @@ void Book::deleteBook()
     system("pause");
 }
 
-void Book::searchBook()
+void Book::searchBook() //search book with id and name
 {
     int n;
     string s;
@@ -193,7 +193,7 @@ void Book::searchBook()
 		system("pause");
 }
 
-void Book::showBook()
+void Book::showBook() // menu show book
 {
     cout << "----------Show book----------" << endl;
     cout << "Book ID: " << id << endl;
@@ -202,7 +202,7 @@ void Book::showBook()
     cout << "Book author: " << author << endl;
     cout << "Book price: " << price << endl;
 }
-void Book::wirteBook()
+void Book::wirteBook() // save book in file
 {
     char ch;
 	fp.open("book.dat",ios::out|ios::app);
@@ -218,7 +218,7 @@ void Book::wirteBook()
 	}while(ch=='y'||ch=='Y');
 	fp.close();
 }
-void Book::display()
+void Book::display()  //display book in screen
 {
     fp.open("book.dat",ios::in);
 
@@ -235,17 +235,17 @@ void Book::display()
      	getch();
 }
 
-int Book::retId()
+int Book::retId() // return id in class
 {
     return id;
 }
 
-string Book::retName()
+string Book::retName() //return name in class
 {
     return name;
 }
 
-void Book::format()
+void Book::format() // format data
 {
     this->name = General::format(this->name);
     this->brand = General::format(this->brand);
@@ -253,7 +253,7 @@ void Book::format()
 }
 
 
-void Book::report()
+void Book::report() // show book
 {
     cout << id << setw(25) << name << setw(25) << brand << setw(20) << author << setw(25) << price << endl;
 }

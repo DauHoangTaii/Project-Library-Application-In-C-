@@ -38,7 +38,6 @@ void User::add_user()
     getline(cin,username);
     cout << "Enter password: ";
     getline(cin,password);
-    cin.ignore();
     Person::input();
     cout << "Enter class: ";
     getline(cin,clas);
@@ -235,6 +234,12 @@ string User::retUsername()
 {
     return username;
 }
+
+string User::retPassword()
+{
+    return password;
+}
+
 
 int User::retId()
 {

@@ -5,6 +5,7 @@
 
 #define USER "user"
 #define USERPASSWORD "user123"
+#include "General.h"
 #include <iostream>
 using namespace std;
 class System
@@ -16,14 +17,14 @@ class System
     protected:
     private:
         bool login();
+        bool login_user();
         void menu_main();
         void menu_admin_manager();
         void menu_user_manager();
         void menu_book_manager();
         void menu_user();
         void menu_worker_manager();
-        string username;
-        string password;
+        void format();
 };
 
 #endif // SYSTEM_H

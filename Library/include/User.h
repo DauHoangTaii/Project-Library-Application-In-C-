@@ -21,6 +21,7 @@ class User:public Person
         void report();
         int retId();
         string retUsername();
+        string retPassword();
     protected:
     private:
         string username;

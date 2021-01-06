@@ -34,6 +34,32 @@ bool System::login()
 	    }
 	    return false;
 }
+bool System::login_user()
+{
+    User us;
+    fstream File;
+    string user;
+    string passwd;
+
+    cout << "------------------User Login-----------------" << endl;
+    cout << "Enter username: ";
+    getline(cin,user);
+    cout << "Enter password: ";
+    getline(cin,passwd);
+
+    File.open("user.dat",ios::binary|ios::in|ios::out);
+	while(!File.eof())
+	{
+		File.read(reinterpret_cast<char *> (&us), sizeof(User));
+		if(us.retUsername()==user && us.retPassword()==passwd)
+		{
+		    return true;
+        }
+	}
+	return false;
+	File.close();
+
+}
 
 void System::menu_main()
 {
@@ -72,7 +98,16 @@ void System::menu_main()
         system("cls");
         menu_admin_manager();
         break;
-    case 2:
+    case 2: //login with user
+        system("cls");
+        cin.ignore();
+        while(!login_user())
+        {
+            cout << "Invalid username or password. Please try again!" << endl;
+            system("pause");
+            system("cls");
+        }
+        system("cls");
         menu_user();
         break;
     case 3:
@@ -291,7 +326,6 @@ void System::menu_worker_manager()
         break;
     }
 }
-
 
 System::~System()
 {
