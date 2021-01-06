@@ -39,6 +39,7 @@ void Book::addBook()
     getline(cin,author);
     cout << "Enter book price: ";
     cin >> price;
+    format();
 }
 
 void Book::updateBook()
@@ -52,6 +53,16 @@ void Book::updateBook()
 	cout << "---------------Update Book----------------" << endl;
 	cout << "Enter id of book update: ";
 	cin >> n;
+	while(n < 1 || n > 9999999)
+    {
+        cin.clear();
+        fflush(stdin);
+        cout << "Error: Invalid Choice. Please try again!" << endl;
+        system("pause");
+        system("cls");
+        cout << "Enter id of book: ";
+        cin >> n;
+    }
 	cin.ignore();
     cout << "Enter name of book update: ";
     getline(cin,s);
@@ -77,11 +88,13 @@ void Book::updateBook()
 		    File.write(reinterpret_cast<char *> (&bk), sizeof(Book));
 		    cout << "Update Successfully !!";
 		    found=true;
+		    system("pause");
 		  }
 	}
 	File.close();
 	if(found==false)
 		cout<<"Record Not Found ";
+		system("pause");
 }
 
 void Book::deleteBook()
@@ -93,6 +106,16 @@ void Book::deleteBook()
 	cout << "----------------DELETE BOOK----------------" << endl;
 	cout << "Enter id of book delete: ";
 	cin>>n;
+	while(n < 1 || n > 9999999)
+    {
+        cin.clear();
+        fflush(stdin);
+        cout << "Error: Invalid Choice. Please try again!" << endl;
+        system("pause");
+        system("cls");
+        cout << "Enter id of book delete: ";
+        cin >> n;
+    }
 	cin.ignore();
 	cout << "Enter name of book delete: ";
 	getline(cin,s);
@@ -133,6 +156,16 @@ void Book::searchBook()
 	cout << "---------------Search Book With ID-------------" << endl;
 	cout << "Enter id of book: ";
 	cin >> n;
+	while(n < 1 || n > 9999999)
+    {
+        cin.clear();
+        fflush(stdin);
+        cout << "Error: Invalid Choice. Please try again!" << endl;
+        system("pause");
+        system("cls");
+        cout << "Enter id of book: ";
+        cin >> n;
+    }
 	cin.ignore();
     cout << "Enter name of book: ";
     getline(cin,s);
@@ -214,7 +247,9 @@ string Book::retName()
 
 void Book::format()
 {
-
+    this->name = General::format(this->name);
+    this->brand = General::format(this->brand);
+    this->author = General::format(this->author);
 }
 
 

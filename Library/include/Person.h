@@ -2,6 +2,7 @@
 #define PERSON_H
 #include <string.h>
 #include <iostream>
+#include "General.h"
 using namespace std;
 
 class Person
@@ -23,6 +24,7 @@ class Person
     protected:
 
     private:
+        void format();
         int id;
         string name;
         int age;

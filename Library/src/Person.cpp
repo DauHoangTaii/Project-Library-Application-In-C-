@@ -29,6 +29,7 @@ void Person::input()
     fflush(stdin);
     cout << "Enter mail: ";
     getline(cin,mail);
+    format();
 }
 
 void Person::display()
@@ -80,6 +81,10 @@ string Person::getMail()
 void Person::setMail()
 {
     this->mail = mail ;
+}
+void Person::format()
+{
+    this->name = General::format(this->name);
 }
 
 Person::~Person()

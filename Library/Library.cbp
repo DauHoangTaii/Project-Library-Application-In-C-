@@ -35,11 +35,15 @@
 			<Add option="-fexceptions" />
 		</Compiler>
 		<Unit filename="include/Book.h" />
+		<Unit filename="include/Date.h" />
+		<Unit filename="include/General.h" />
 		<Unit filename="include/Person.h" />
 		<Unit filename="include/System.h" />
 		<Unit filename="include/User.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/Book.cpp" />
+		<Unit filename="src/Date.cpp" />
+		<Unit filename="src/General.cpp" />
 		<Unit filename="src/Person.cpp" />
 		<Unit filename="src/System.cpp" />
 		<Unit filename="src/User.cpp" />

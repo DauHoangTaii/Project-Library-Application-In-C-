@@ -25,95 +25,47 @@ string General::toUpperStr(string str)
     return str;
 
 }
-
-long long General::findInLower(string haystack, string needle)
+void General::remove(char a[], int k, int& n)
 {
-    haystack = toLowerStr(haystack);
-    needle = toLowerStr(needle);
-    return haystack.find(needle);
+    for (int i=k; i<=n; i++)    //a[n]='\0';
+    a[i]=a[i+1];
+    n--;
 }
 
-bool General::choice(string question)
+string General::format(string s)
 {
-    char choice;
-    cout << question << " (Y/n): ";
-    cin >> choice;
-    while (!(choice == 'y' || choice == 'Y' || choice == 'n' || choice == 'N'))
+    //chuan hoa xau, bo dau space thua
+    char a[s.length()];
+
+    for (int i=0; i<=s.length(); i++)    //s[length]='\0'
+    a[i] = s[i];
+
+    int n=s.length();
+    for (int i=0; i<n; i++)
     {
-        fflush(stdin);
-        cout << "Your choice is invalid! Please choice again." << endl;
-        cout << question << " (Y/n): ";
-        cin >> choice;
-    }
-    if (choice == 'y' || choice == 'Y')
-    {
-        return true;
-    }
-    return false;
-}
-
-int General::choice(string question, int maxChoice)
-{
-    int choice;
-    cout << question;
-    cin >> choice;
-    while (choice <0 || choice > maxChoice)
-    {
-        fflush(stdin);
-        cout << "Your choice is invalid! Please choice again." << endl;
-        cout << question;
-        cin >> choice;
-    }
-    return choice;
-
-}
-
-char General::toUpperChar(char ch)
-{
-    if ('a' <= ch && ch <= 'z')
-        ch = ch - 32;
-    return ch;
-}
-
-char General::toLowerChar(char ch)
-{
-    if ('A' <= ch && ch <= 'Z')
-        ch = ch + 32;
-    return ch;
-}
-
-string General::format(string name)
-{
-    // Create new name string
-    string newName;
-    // Duyet cac ky tu trong name
-    for(int i=0; i<name.length(); i++)
-    {
-        // Lay ky tu hien tai
-        char ch = name[i];
-        // Kiem tra ky tu do co phai la khoang trang hay khong
-        bool isWhiteSpace = ch == ' ' || ch == '\t';
-        if (isWhiteSpace)
-        {
-            // When begin char(s) is a white space
-            if (newName.length() == 0)
-                continue;
-            // Check the last char of new name is a space
-            bool isEndBySpace = newName[newName.length() - 1] == ' ';
-            if (isEndBySpace)
-                continue;
-            else
-                newName += ' ';
+        if (a[0]==' ') {
+            remove(a, 0, n);
         }
-        else
-        {
-            if (newName.length() == 0 || newName[newName.length()-1] == ' ')
-                newName += toUpperChar(ch);
-            else
-                newName += toLowerChar(ch);
+
+        if (a[n-1]==' ') remove(a,n-1, n);
+
+        if (a[i]==' ' && a[i+1]==' ') {
+            remove(a, i, n);
+            i--;
         }
     }
-    return newName;
+    upperTitle(a,n);
+    return a;
+}
+void General::upperTitle(char a[], int n)
+{
+    for (int i=0; i<n; i++)
+    if (a[i] <='Z' && a[i] >='A') a[i]+=32; // chuyen xau thanh chu thuong
+
+    if (a[0] >='a' && a[0] <='z') a[0]-=32;
+
+    for (int i=0; i< n-1; i++)
+    if (a[i]==' ' && a[i+1] != ' ') a[i+1]-='a'-'A';
 }
 
 void General::clearStdin()

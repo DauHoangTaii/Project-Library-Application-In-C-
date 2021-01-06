@@ -221,7 +221,7 @@ void System::menu_book_manager()
         goto loop;
     case 2:
         bk.updateBook();
-        break;
+        goto loop;
     case 3:
         bk.deleteBook();
         goto loop;

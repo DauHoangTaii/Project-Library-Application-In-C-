@@ -2,6 +2,7 @@
 #define USER_H
 #include "Person.h"
 #include "Date.h"
+#include "General.h"
 #include <iostream>
 using namespace std;
 

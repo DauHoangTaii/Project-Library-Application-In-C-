@@ -37,11 +37,12 @@ void User::add_user()
     cout << "Enter username: ";
     getline(cin,username);
     cout << "Enter password: ";
-    cin >> password;
+    getline(cin,password);
     cin.ignore();
     Person::input();
     cout << "Enter class: ";
     getline(cin,clas);
+    format();
 }
 
 void User::update_user()
@@ -65,7 +66,7 @@ void User::update_user()
         cout << "Enter id of user: ";
         cin >> n;
     }
-    cout << "Enter username of user delete: ";
+    cout << "Enter username of user update: ";
     cin >> s;
 
     File.open("user.dat",ios::binary|ios::in|ios::out);
@@ -242,7 +243,8 @@ int User::retId()
 
 void User::format()
 {
-
+    this->username = General::toLowerStr(this->username);
+    this->clas = General::format(this->clas);
 }
 
 User::~User()
