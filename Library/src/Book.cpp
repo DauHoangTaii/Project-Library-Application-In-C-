@@ -204,19 +204,14 @@ void Book::showBook() // menu show book
 }
 void Book::wirteBook() // save book in file
 {
-    char ch;
-	fp.open("book.dat",ios::out|ios::app);
-	do
-	{
-		bk.addBook();
-		fp.write(reinterpret_cast<char*>(&bk),sizeof(Book));
-		cout << "Add Book Successfully !" << endl;
-		system("pause");
-		system("cls");
-		cout << "Do you want to add more record..(y/n?)";
-		cin >> ch;
-	}while(ch=='y'||ch=='Y');
-	fp.close();
+	ofstream outFile;
+    outFile.open("book.dat",ios::binary|ios::app);
+    bk.addBook();
+    outFile.write(reinterpret_cast<char *> (&bk), sizeof(Book));
+    cout << "Add Book Successfully !" << endl;
+    system("pause");
+    system("cls");
+	outFile.close();
 }
 void Book::display()  //display book in screen
 {

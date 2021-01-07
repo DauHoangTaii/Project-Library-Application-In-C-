@@ -189,19 +189,13 @@ void User::search_user()
 // save file
 void User::write_user()
 {
-    char ch;
     ofstream outFile;
-	do
-	{
-        outFile.open("user.dat",ios::binary|ios::app);
-        us.add_user();
-        outFile.write(reinterpret_cast<char *> (&us), sizeof(User));
-		cout << "Add User Successfully !" << endl;
-		system("pause");
-		system("cls");
-		cout << "Do you want to add more record..(y/n?)";
-		cin >> ch;
-	}while(ch=='y'||ch=='Y');
+    outFile.open("user.dat",ios::binary|ios::app);
+    us.add_user();
+    outFile.write(reinterpret_cast<char *> (&us), sizeof(User));
+    cout << "Add User Successfully !" << endl;
+    system("pause");
+    system("cls");
 	outFile.close();
 }
 

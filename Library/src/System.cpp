@@ -34,29 +34,33 @@ bool System::login()
 	    }
 	    return false;
 }
-bool System::login_user()
+void System::login_user()
 {
     User us;
     fstream File;
     string user;
     string passwd;
+    int n;
 
     cout << "------------------User Login-----------------" << endl;
-    cout << "Enter username: ";
-    getline(cin,user);
-    cout << "Enter password: ";
-    getline(cin,passwd);
-
+//    cout << "Enter username: ";
+//    getline(cin,user);
+//    cout << "Enter password: ";
+//    getline(cin,passwd);
+//    cin.ignore();
+    cout << "Enter id: ";
+    cin >> n;
     File.open("user.dat",ios::binary|ios::in|ios::out);
 	while(!File.eof())
 	{
 		File.read(reinterpret_cast<char *> (&us), sizeof(User));
-		if(us.retUsername()==user && us.retPassword()==passwd)
-		{
-		    return true;
-        }
+		us.show_user();
+//		if(us.retId()==n)
+//		{
+//		    return true;
+//        }
 	}
-	return false;
+//	return false;
 	File.close();
 
 }
@@ -101,14 +105,15 @@ void System::menu_main()
     case 2: //login with user
         system("cls");
         cin.ignore();
-        while(!login_user())
-        {
-            cout << "Invalid username or password. Please try again!" << endl;
-            system("pause");
-            system("cls");
-        }
-        system("cls");
-        menu_user();
+//        while(!login_user())
+//        {
+//            cout << "Invalid username or password. Please try again!" << endl;
+//            system("pause");
+//            system("cls");
+//        }
+//        system("cls");
+//        menu_user();
+        login_user();
         break;
     case 3:
         cout << "Thank you for using it!!";
@@ -189,7 +194,13 @@ void System::menu_user_manager()
     switch(choice)
     {
     case 1:
-        us.write_user();
+        char c;
+        do
+        {
+         us.write_user();
+         cout << "Do you add more user..(y/n?): ";
+         cin >> c;
+        }while(c=='y'||c=='Y');
         goto loop;
     case 2:
         us.update_user();
@@ -252,7 +263,13 @@ void System::menu_book_manager()
     switch(choice)
     {
     case 1:
-        bk.wirteBook();
+        char c;
+        do
+        {
+            bk.wirteBook();
+            cout << "Do you add more book..(y/n?): ";
+            cin >> c;
+        }while(c=='y' || c=='Y');
         goto loop;
     case 2:
         bk.updateBook();

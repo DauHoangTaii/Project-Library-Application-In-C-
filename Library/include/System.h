@@ -17,7 +17,7 @@ class System
     protected:
     private:
         bool login();
-        bool login_user();
+        void login_user();
         void menu_main();
         void menu_admin_manager();
         void menu_user_manager();
