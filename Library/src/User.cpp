@@ -21,7 +21,7 @@ User::User()
     clas = "N/A";
 }
 
-void User::show_user()
+void User::show_user() //show user
 {
     cout << "Username: " << username << endl;
     cout << "Password: " << password << endl;
@@ -29,7 +29,7 @@ void User::show_user()
     cout << "Class: " << clas << endl;
 }
 
-void User::add_user()
+void User::add_user() //menu add user
 {
     system("cls");
     cout << "----------------New user-----------------" << endl;
@@ -44,7 +44,7 @@ void User::add_user()
     format();
 }
 
-void User::update_user()
+void User::update_user() //update user in file
 {
     system("cls");
     fstream File;
@@ -97,7 +97,7 @@ void User::update_user()
 		cout<<"Record Not Found ";
 }
 
-void User::delete_user()
+void User::delete_user() // delete user in file
 {
     system("cls");
     int n;
@@ -142,7 +142,7 @@ void User::delete_user()
     system("pause");
 }
 
-void User::search_user()
+void User::search_user() // search user in file
 {
     int n;
     string s;

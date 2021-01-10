@@ -26,9 +26,9 @@ class Person
     private:
         void format();
         int id;
-        string name;
+        char name[50];
         int age;
-        string mail;
+        char mail[50];
 };
 
 #endif // PERSON_H

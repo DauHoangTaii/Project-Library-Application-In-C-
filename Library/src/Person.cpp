@@ -12,10 +12,7 @@ using namespace std;
 
 Person::Person()
 {
-    id = 0;
-    name = "N/A";
-    age = 0;
-    mail = "N/A";
+    //ctr
 }
 void Person::input()
 {
@@ -23,12 +20,12 @@ void Person::input()
     cin >> id;
     fflush(stdin);
     cout << "Enter name: ";
-    getline(cin,name);
+    cin.getline(name,50);
     cout << "Enter age: ";
     cin >> age;
     fflush(stdin);
     cout << "Enter mail: ";
-    getline(cin,mail);
+    cin.getline(mail,50);
     format();
 }
 
@@ -58,10 +55,6 @@ string Person::getName()
     return name ;
 }
 
-void Person::setName()
-{
-    this->name = name ;
-}
 
 int Person::getAge()
 {
@@ -78,13 +71,9 @@ string Person::getMail()
     return mail ;
 }
 
-void Person::setMail()
-{
-    this->mail = mail ;
-}
 void Person::format()
 {
-    this->name = General::format(this->name);
+//    this->name = General::format(this->name);
 }
 
 Person::~Person()

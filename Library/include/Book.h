@@ -26,9 +26,9 @@ class Book
 
     private:
         int id;
-        string name;
-        string brand;
-        string author;
+        char name[50];
+        char brand[50];
+        char author[50];
         int year,month,day;
         long long price;
 };

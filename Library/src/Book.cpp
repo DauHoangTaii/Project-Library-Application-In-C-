@@ -12,11 +12,7 @@ using namespace std;
 
 Book::Book()
 {
-    id = 0;
-    name = "N/A";
-    brand = "N/A";
-    author = "N/A";
-    price = 0;
+
 }
 
 // write file
@@ -32,11 +28,11 @@ void Book::addBook() //menu add book
     cin >> id;
     fflush(stdin);
     cout << "Enter book name: ";
-    getline(cin,name);
+    cin.getline(name,50);
     cout << "Enter book brand: ";
-    getline(cin,brand);
+    cin.getline(brand,50);
     cout << "Enter book author: ";
-    getline(cin,author);
+    cin.getline(author,50);
     cout << "Enter book price: ";
     cin >> price;
     format();
@@ -215,14 +211,20 @@ void Book::wirteBook() // save book in file
 }
 void Book::display()  //display book in screen
 {
-    fp.open("book.dat",ios::in);
+    ifstream inFile;
+	inFile.open("book.dat",ios::binary);
+	if(!inFile)
+	{
+		cout<<"File could not be open !! Press any Key...";
+		return;
+	}
 
 	cout << "\t\t\t\t\t\t\tBook LIST" << endl;
 	cout << "========================================================================================================\n";
-	cout << "Book ID"<<setw(20)<<"Book Name"<<setw(25)<<"Book brand"<<setw(20)<<"Book Author"<<setw(20)<<"Book price" << endl;
+	cout << "Book ID"<<setw(25)<<"Book Name"<<setw(30)<<"Book brand"<<setw(25)<<"Book Author"<<setw(25)<<"Book price" << endl;
 	cout << "========================================================================================================\n";
 
-	while(fp.read((char*)&bk,sizeof(Book)))
+	while(inFile.read(reinterpret_cast<char*>(&bk),sizeof(Book)))
 	{
 		bk.report();
 	}
@@ -242,15 +244,15 @@ string Book::retName() //return name in class
 
 void Book::format() // format data
 {
-    this->name = General::format(this->name);
-    this->brand = General::format(this->brand);
-    this->author = General::format(this->author);
+//    name = General::format(name);
+//    brand = General::format(brand);
+//    author = General::format(author);
 }
 
 
 void Book::report() // show book
 {
-    cout << id << setw(25) << name << setw(25) << brand << setw(20) << author << setw(25) << price << endl;
+    cout << id << setw(30) << name << setw(30) << brand << setw(25) << author << setw(30) << price << endl;
 }
 Book::~Book()
 {
