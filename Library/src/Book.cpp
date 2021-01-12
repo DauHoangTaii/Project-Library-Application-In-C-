@@ -7,6 +7,7 @@
 #include <conio.h>
 #include<stdio.h>
 #include <cstdio>
+#include "Dohoa.h"
 
 using namespace std;
 
@@ -102,7 +103,7 @@ void Book::deleteBook() //delete book with id and name in file
 	cout << "----------------DELETE BOOK----------------" << endl;
 	cout << "Enter id of book delete: ";
 	cin>>n;
-	while(n < 1 || n > 9999999)
+	while(n < 0 || n > 9999999)
     {
         cin.clear();
         fflush(stdin);
@@ -218,10 +219,10 @@ void Book::display()  //display book in screen
 		cout<<"File could not be open !! Press any Key...";
 		return;
 	}
-
+	//Dohoa::setColor(2);
 	cout << "\t\t\t\t\t\t\tBook LIST" << endl;
 	cout << "========================================================================================================\n";
-	cout << "Book ID"<<setw(25)<<"Book Name"<<setw(30)<<"Book brand"<<setw(25)<<"Book Author"<<setw(25)<<"Book price" << endl;
+	cout << left<<setw(10)<<"Book ID"<<left<<setw(25)<<"Book Name"<<left<<setw(15)<<"Book brand"<<left<<setw(20)<<"Book Author"<<left<<setw(10)<<"Book price" << endl;
 	cout << "========================================================================================================\n";
 
 	while(inFile.read(reinterpret_cast<char*>(&bk),sizeof(Book)))
@@ -244,15 +245,16 @@ string Book::retName() //return name in class
 
 void Book::format() // format data
 {
-//    name = General::format(name);
-//    brand = General::format(brand);
-//    author = General::format(author);
+    char *s;
+    s = General::format(name);
+    s = General::format(brand);
+    s = General::format(author);
 }
 
 
 void Book::report() // show book
 {
-    cout << id << setw(30) << name << setw(30) << brand << setw(25) << author << setw(30) << price << endl;
+    cout << left << setw(10) << id << left << setw(25) << name << left << setw(15) << brand << left << setw(20) << author << left << setw(10) << price << endl;
 }
 Book::~Book()
 {

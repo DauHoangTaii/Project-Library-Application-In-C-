@@ -1,5 +1,5 @@
 #include "General.h"
-
+#include <string.h>
 
 string General::toLowerStr(string str)
 {
@@ -32,15 +32,9 @@ void General::remove(char a[], int k, int& n)
     n--;
 }
 
-string General::format(string s)
+char* General::format(char a[])
 {
-    //chuan hoa xau, bo dau space thua
-    char a[s.length()];
-
-    for (int i=0; i<=s.length(); i++)    //s[length]='\0'
-    a[i] = s[i];
-
-    int n=s.length();
+    int n = strlen(a);
     for (int i=0; i<n; i++)
     {
         if (a[0]==' ') {
@@ -54,10 +48,21 @@ string General::format(string s)
             i--;
         }
     }
-    upperTitle(a,n);
-    return a;
+    char *s = strdup(a);
+    upper(a,n);
+    return s;
 }
 void General::upperTitle(char a[], int n)
+{
+    for (int i=0; i<n; i++)
+    if (a[i] <='Z' && a[i] >='A') a[i]+=32; // chuyen xau thanh chu thuong
+
+    if (a[0] >='a' && a[0] <='z') a[0]-=32;
+
+    for (int i=0; i< n-1; i++)
+    if (a[i]==' ' && a[i+1] != ' ') a[i+1]-='a'-'A';
+}
+void General::upper(char a[], int n)
 {
     for (int i=0; i<n; i++)
     if (a[i] <='Z' && a[i] >='A') a[i]+=32; // chuyen xau thanh chu thuong

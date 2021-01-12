@@ -16,9 +16,7 @@ fstream fp3;
 
 User::User()
 {
-    username = "N/A";
-    password = "N/A";
-    clas = "N/A";
+
 }
 
 void User::show_user() //show user
@@ -35,12 +33,12 @@ void User::add_user() //menu add user
     cout << "----------------New user-----------------" << endl;
     cin.ignore();
     cout << "Enter username: ";
-    getline(cin,username);
+    cin.getline(username,15);
     cout << "Enter password: ";
-    getline(cin,password);
+    cin.getline(password,20);
     Person::input();
     cout << "Enter class: ";
-    getline(cin,clas);
+    cin.getline(clas,15);
     format();
 }
 
@@ -201,9 +199,9 @@ void User::write_user()
 
 void User::report()
 {
-    cout << username <<setw(20) << password << setw(23);
+    cout << left << setw(20) << username << "\t" << left << setw(20) << password << "\t" << left << setw(20);
     Person::report();
-    cout << setw(23) << clas << endl;
+    cout << left << setw(20) << clas << endl;
 //    cout << username << setw(20) << password << setw(23) << getId() << setw(25) << getName() << setw(20) << getAge() << setw(23) << getMail() << setw(20) << clas;
 }
 
@@ -213,9 +211,9 @@ void User::display()
     fp3.open("user.dat",ios::in);
 
 	cout << "\t\t\t\t\t\t\t\t\tUser LIST" << endl;
-	cout << "=================================================================================================================================================\n";
-	cout << "Username"<<setw(20)<<"Password"<<setw(20)<<"ID"<<setw(20)<<"Name"<<setw(25)<<"Age"<<setw(20)<<"Mail"<<setw(20)<<"Class" << endl;
-	cout << "=================================================================================================================================================\n";
+	cout << "==========================================================================================================================================================================================\n";
+	cout << left<<setw(20)<<"Username\t"<<left<<setw(20)<<"Password\t"<<left<<setw(20)<<"ID\t"<<left<<setw(20)<<"Name\t"<<left<<setw(20)<<"Age\t"<<left<<setw(35)<<"Mail\t"<<left<<setw(20)<<"Class" << endl;
+	cout << "==========================================================================================================================================================================================\n";
 
 	while(fp3.read(reinterpret_cast<char*>(&us),sizeof(User)))
 	{
@@ -224,12 +222,12 @@ void User::display()
      	fp3.close();
      	getch();
 }
-string User::retUsername()
+char* User::retUsername()
 {
     return username;
 }
 
-string User::retPassword()
+char* User::retPassword()
 {
     return password;
 }
@@ -242,8 +240,8 @@ int User::retId()
 
 void User::format()
 {
-    this->username = General::toLowerStr(this->username);
-    this->clas = General::format(this->clas);
+    char *s;
+    s = General::format(clas);
 }
 
 User::~User()

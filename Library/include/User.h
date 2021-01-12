@@ -20,13 +20,13 @@ class User:public Person
         void display();
         void report();
         int retId();
-        string retUsername();
-        string retPassword();
+        char* retUsername();
+        char* retPassword();
     protected:
     private:
-        string username;
-        string password;
-        string clas;
+        char username[15];
+        char password[20];
+        char clas[15];
         Date birthDate;
         void format();
 };

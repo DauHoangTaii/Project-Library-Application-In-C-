@@ -17,11 +17,11 @@
 	<iostream>
 	"System.h"
 
-1609994723 c:\users\admin\desktop\library-application\library\include\system.h
+1610331261 c:\users\admin\desktop\library-application\library\include\system.h
 	"General.h"
 	<iostream>
 
-1610041721 source:c:\users\admin\desktop\library-application\library\src\system.cpp
+1610331660 source:c:\users\admin\desktop\library-application\library\src\system.cpp
 	"System.h"
 	<iostream>
 	<stdlib.h>
@@ -30,12 +30,13 @@
 	"Book.h"
 	"User.h"
 
-1610218176 c:\users\admin\desktop\library-application\library\include\book.h
+1610387483 c:\users\admin\desktop\library-application\library\include\book.h
 	<iostream>
 	<string.h>
 	"General.h"
+	"Dohoa.h"
 
-1610218360 source:c:\users\admin\desktop\library-application\library\src\book.cpp
+1610354499 source:c:\users\admin\desktop\library-application\library\src\book.cpp
 	"Book.h"
 	<iostream>
 	<stdlib.h>
@@ -45,8 +46,9 @@
 	<conio.h>
 	<stdio.h>
 	<cstdio>
+	"Dohoa.h"
 
-1610262598 source:c:\users\admin\desktop\library-application\library\src\person.cpp
+1610300040 source:c:\users\admin\desktop\library-application\library\src\person.cpp
 	"Person.h"
 	<iostream>
 	<stdlib.h>
@@ -62,7 +64,7 @@
 	<iostream>
 	"General.h"
 
-1610072527 source:c:\users\admin\desktop\library-application\library\src\user.cpp
+1610341639 source:c:\users\admin\desktop\library-application\library\src\user.cpp
 	"User.h"
 	"Person.h"
 	<iostream>
@@ -74,7 +76,7 @@
 	<stdio.h>
 	<cstdio>
 
-1609913794 c:\users\admin\desktop\library-application\library\include\user.h
+1610331529 c:\users\admin\desktop\library-application\library\include\user.h
 	"Person.h"
 	"Date.h"
 	"General.h"
@@ -94,11 +96,21 @@
 1609822757 source:c:\users\admin\desktop\library-application\library\src\date.cpp
 	"Date.h"
 
-1609862127 source:c:\users\admin\desktop\library-application\library\src\general.cpp
+1610298202 source:c:\users\admin\desktop\library-application\library\src\general.cpp
 	"General.h"
+	<string.h>
 
-1610262431 c:\users\admin\desktop\library-application\library\include\general.h
+1610297783 c:\users\admin\desktop\library-application\library\include\general.h
 	<string>
 	<iostream>
 	<stdio.h>
+
+1610343718 c:\users\admin\desktop\library-application\library\include\dohoa.h
+	<iostream>
+	<Windows.h>
+	<Shlwapi.h>
+	<conio.h>
+
+1610343597 source:c:\users\admin\desktop\library-application\library\src\dohoa.cpp
+	"Dohoa.h"
 

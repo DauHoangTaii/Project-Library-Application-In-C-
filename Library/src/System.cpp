@@ -34,33 +34,33 @@ bool System::login()
 	    }
 	    return false;
 }
-void System::login_user()
+bool System::login_user()
 {
     User us;
     fstream File;
-    string user;
-    string passwd;
+    char user[15];
+    char passwd[20];
     int n;
 
     cout << "------------------User Login-----------------" << endl;
-//    cout << "Enter username: ";
-//    getline(cin,user);
-//    cout << "Enter password: ";
-//    getline(cin,passwd);
+    cout << "Enter username: ";
+    cin.getline(user,15);
+    cout << "Enter password: ";
+    cin.getline(passwd,20);
 //    cin.ignore();
-    cout << "Enter id: ";
-    cin >> n;
+//    cout << "Enter id: ";
+//    cin >> n;
     File.open("user.dat",ios::binary|ios::in|ios::out);
 	while(!File.eof())
 	{
 		File.read(reinterpret_cast<char *> (&us), sizeof(User));
-		us.show_user();
-//		if(us.retId()==n)
-//		{
-//		    return true;
-//        }
+		//us.show_user();
+		if(strcmp(us.retUsername(),user)==0 && strcmp(us.retPassword(),passwd) == 0)
+		{
+		    return true;
+        }
 	}
-//	return false;
+	return false;
 	File.close();
 
 }
@@ -70,7 +70,18 @@ void System::menu_main()
     loop:
     system("cls");
     fflush(stdin);
-    cout << "---------------Library Management Version 1.0--------------"<<endl;
+    cout << " _     _ _" << endl;
+    cout << "| |   (_) |__   __ _ _ __ __ _ _   _" << endl;
+    cout << "| |   | | '_ \\ / _` | '__/ _` | | | |" << endl;
+    cout << "| |___| | |_) | (_| | | | (_| | |_| |" << endl;
+    cout << "|_____|_|_.__/ \\__,_|_|  \\__,_|\\__, |" << endl;
+    cout << "                               |___/" << endl;
+    cout << "    _                _ _           _   _" << endl;
+    cout << "   / \\   _ __  _ __ | (_) ___ __ _| |_(_) ___  _ __" << endl;
+    cout << "  / _ \\ | '_ \\| '_ \\| | |/ __/ _` | __| |/ _ \\| '_ \\" << endl;
+    cout << " / ___ \\| |_) | |_) | | | (_| (_| | |_| | (_) | | | |" << endl;
+    cout << "/_/   \\_\\ .__/| .__/|_|_|\\___\\__,_|\\__|_|\\___/|_| |_|" << endl;
+    cout << "        |_|   |_|" << endl;
     cout << "[1]. Login With Admin " << endl;
     cout << "[2]. Login With User " << endl;
     cout << "[3]. Exit " << endl;
@@ -105,15 +116,14 @@ void System::menu_main()
     case 2: //login with user
         system("cls");
         cin.ignore();
-//        while(!login_user())
-//        {
-//            cout << "Invalid username or password. Please try again!" << endl;
-//            system("pause");
-//            system("cls");
-//        }
-//        system("cls");
-//        menu_user();
-        login_user();
+        while(!login_user())
+        {
+            cout << "Invalid username or password. Please try again!" << endl;
+            system("pause");
+            system("cls");
+        }
+        system("cls");
+        menu_user();
         break;
     case 3:
         cout << "Thank you for using it!!";

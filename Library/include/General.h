@@ -13,7 +13,7 @@ namespace General
     void upper(char a[],int n);
     void remove(char a[], int k, int &n);
     void upperTitle(char a[],int n);
-    string format(string name);
+    char* format(char a[]);
     void clearStdin();
 }
 

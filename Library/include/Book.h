@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string.h>
 #include "General.h"
+#include "Dohoa.h"
 using namespace std;
 
 class Book
@@ -29,6 +30,7 @@ class Book
         char name[50];
         char brand[50];
         char author[50];
+        char status[15];
         int year,month,day;
         long long price;
 };

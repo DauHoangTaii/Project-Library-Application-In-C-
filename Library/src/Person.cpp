@@ -38,7 +38,7 @@ void Person::display()
 }
 void Person::report()
 {
-    cout << getId() << setw(25) << getName() << setw(23) << getAge() <<  setw(23) << getMail();
+    cout << getId() << "\t" << left << setw(20) << getName() << "\t" << left << setw(20) << getAge() << "\t" << left << setw(35) << getMail() << "\t";
 }
 void Person::setId()
 {
@@ -73,7 +73,8 @@ string Person::getMail()
 
 void Person::format()
 {
-//    this->name = General::format(this->name);
+    char *s;
+    s = General::format(this->name);
 }
 
 Person::~Person()
