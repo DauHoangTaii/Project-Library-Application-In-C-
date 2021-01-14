@@ -47,9 +47,6 @@ bool System::login_user()
     cin.getline(user,15);
     cout << "Enter password: ";
     cin.getline(passwd,20);
-//    cin.ignore();
-//    cout << "Enter id: ";
-//    cin >> n;
     File.open("user.dat",ios::binary|ios::in|ios::out);
 	while(!File.eof())
 	{
@@ -131,7 +128,7 @@ void System::menu_main()
     }
 }
 
-void System::menu_admin_manager()
+void System::menu_admin_manager() // menu of admin
 {
     int choice;
 
@@ -174,7 +171,7 @@ void System::menu_admin_manager()
     }
 }
 
-void System::menu_user_manager()
+void System::menu_user_manager() // menu manager user
 {
     loop:
     int choice = -1;
@@ -233,14 +230,51 @@ void System::menu_user_manager()
     }
 }
 
-void System::menu_user()
+void System::menu_user() // menu to rent book
 {
+    loop:
+    int choice;
+
     system("cls");
+
     cout << "[1]. Rent book" << endl;
     cout << "[2]. Return book" << endl;
-    cout << "[3]. Show personal information" << endl;
-    cout << "[4]. Back" << endl;
-    cout << "[0]. Exit" << endl;
+    cout << "[3]. Show list book" << endl;
+    cout << "[4]. Logout" << endl;
+    cout << "[5]. Exit" << endl;
+
+    cout << "Enter your choice: ";
+    cin >> choice;
+
+    while(choice < 1 || choice > 5)
+    {
+        cin.clear();
+        fflush(stdin);
+        cout << "Error: Invalid Choice. Please try again!" << endl;
+        cout << "Enter your choice: ";
+        cin >> choice;
+    }
+    ServiceBook sv;
+    Book bk;
+    switch(choice)
+    {
+    case 1:
+        sv.rentBook();
+        goto loop;
+    case 2:
+        sv.returnBook();
+        goto loop;
+    case 3:
+        bk.display();
+        system("pause");
+        goto loop;
+    case 4:
+        menu_main();
+    case 5:
+        cout << "Thank you for using it ! " << endl;
+        system("pause");
+        exit(0);
+    }
 }
 
 void System::menu_book_manager()

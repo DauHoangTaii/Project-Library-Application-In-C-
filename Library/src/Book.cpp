@@ -23,6 +23,7 @@ Book bk;
 
 void Book::addBook() //menu add book
 {
+    char null[1] = {'\x00'};
     system("cls");
     cout << "----------New Book----------" << endl;
     cout << "Enter id: ";
@@ -34,8 +35,8 @@ void Book::addBook() //menu add book
     cin.getline(brand,50);
     cout << "Enter book author: ";
     cin.getline(author,50);
-    cout << "Enter book price: ";
-    cin >> price;
+    strcpy(rentUser,null);
+    status = 0;
     format();
 }
 
@@ -197,7 +198,7 @@ void Book::showBook() // menu show book
     cout << "Book name: " << name << endl;
     cout << "Book brand: " << brand << endl;
     cout << "Book author: " << author << endl;
-    cout << "Book price: " << price << endl;
+    cout << "User renting: " << rentUser << endl;
 }
 void Book::wirteBook() // save book in file
 {
@@ -222,7 +223,7 @@ void Book::display()  //display book in screen
 	//Dohoa::setColor(2);
 	cout << "\t\t\t\t\t\t\tBook LIST" << endl;
 	cout << "========================================================================================================\n";
-	cout << left<<setw(10)<<"Book ID"<<left<<setw(25)<<"Book Name"<<left<<setw(15)<<"Book brand"<<left<<setw(20)<<"Book Author"<<left<<setw(10)<<"Book price" << endl;
+	cout << left<<setw(10)<<"Book ID"<<left<<setw(25)<<"Book Name"<<left<<setw(15)<<"Book brand"<<left<<setw(20)<<"Book Author" << left << setw(2) << "\tStatus" << left<<setw(20)<<"\tUser Renting" << endl;
 	cout << "========================================================================================================\n";
 
 	while(inFile.read(reinterpret_cast<char*>(&bk),sizeof(Book)))
@@ -232,15 +233,112 @@ void Book::display()  //display book in screen
      	fp.close();
      	getch();
 }
+bool Book::updateRentBook(char s[]) //rent book
+{
+    User us;
+    fstream File;
+    bool found=false;
+
+    File.open("book.dat",ios::binary|ios::in|ios::out);
+    while(!File.eof() && found==false)
+    {
+        File.read(reinterpret_cast<char *> (this), sizeof(Book));
+        if(strcmp(s, retName())==0)
+        {
+            if (status == 1)
+            {
+                return false;
+            }
+            else
+            {
+                if(us.updateUserRent(s) == true)
+                {
+                    id = retId();
+                    *name = *retName();
+                    *brand = *retBrand();
+                    *author = *retAuthor();
+                    strcpy(rentUser,us.retUsername());
+                    status = 1;
+                    int pos=(-1)*static_cast<int>(sizeof(Book));
+                    File.seekp(pos,ios::cur);
+                    File.write(reinterpret_cast<char *> (this), sizeof(Book));
+                    found=true;
+                    return true;
+                }
+                return false;
+            }
+        }
+    }
+    File.close();
+    return false;
+}
+bool Book::updateBookReturn(char s[]) //return book
+{
+    User us;
+    fstream File;
+    bool found=false;
+    char null[1] = {'\x00'};
+
+    File.open("book.dat",ios::binary|ios::in|ios::out);
+    while(!File.eof() && found==false)
+    {
+        File.read(reinterpret_cast<char *> (this), sizeof(Book));
+        if(strcmp(s, retName())==0)
+        {
+            if (status == 0)
+            {
+                return false;
+            }
+            else
+            {
+                if(us.updateUserReturn(s) == true)
+                {
+                    id = retId();
+                    *name = *retName();
+                    *brand = *retBrand();
+                    *author = *retAuthor();
+                    strcpy(rentUser,null);
+                    status = 0;
+                    int pos=(-1)*static_cast<int>(sizeof(Book));
+                    File.seekp(pos,ios::cur);
+                    File.write(reinterpret_cast<char *> (this), sizeof(Book));
+                    found=true;
+                    return true;
+                }
+                return false;
+            }
+        }
+    }
+    File.close();
+    return false;
+}
 
 int Book::retId() // return id in class
 {
     return id;
 }
 
-string Book::retName() //return name in class
+char* Book::retName() //return name in class
 {
     return name;
+}
+char* Book::retBrand()
+{
+    return brand;
+}
+
+char* Book::retAuthor()
+{
+    return author;
+}
+char* Book::retRentUser()
+{
+    return rentUser;
+}
+
+int Book::retStatus()
+{
+    return status;
 }
 
 void Book::format() // format data
@@ -251,10 +349,9 @@ void Book::format() // format data
     s = General::format(author);
 }
 
-
 void Book::report() // show book
 {
-    cout << left << setw(10) << id << left << setw(25) << name << left << setw(15) << brand << left << setw(20) << author << left << setw(10) << price << endl;
+    cout << left << setw(10) << id << left << setw(25) << name << left << setw(15) << brand << left << setw(20) << author << left << setw(2) << "\t" << status << left << setw(10) << " " << rentUser << endl;
 }
 Book::~Book()
 {

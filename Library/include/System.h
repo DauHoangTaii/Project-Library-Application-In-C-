@@ -6,6 +6,7 @@
 #define USER "user"
 #define USERPASSWORD "user123"
 #include "General.h"
+#include "ServiceBook.h"
 #include <iostream>
 using namespace std;
 class System

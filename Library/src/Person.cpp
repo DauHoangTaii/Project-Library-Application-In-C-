@@ -38,8 +38,16 @@ void Person::display()
 }
 void Person::report()
 {
-    cout << getId() << "\t" << left << setw(20) << getName() << "\t" << left << setw(20) << getAge() << "\t" << left << setw(35) << getMail() << "\t";
+    cout << left << setw(20) << getId() << "\t" << left << setw(20) << getName() << "\t" << left << setw(20) << getAge() << "\t" << left << setw(35) << getMail() << "\t";
 }
+void Person::setValueDefaut()
+{
+    id = getId();
+    *name = *getName();
+    age = getAge();
+    *mail = *getMail();
+}
+
 void Person::setId()
 {
     this->id = id ;
@@ -50,7 +58,7 @@ int Person::getId()
     return id;
 }
 
-string Person::getName()
+char* Person::getName()
 {
     return name ;
 }
@@ -66,7 +74,7 @@ void Person::setAge()
     this->age = age ;
 }
 
-string Person::getMail()
+char* Person::getMail()
 {
     return mail ;
 }

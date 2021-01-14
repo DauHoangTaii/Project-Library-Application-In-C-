@@ -22,11 +22,16 @@ class User:public Person
         int retId();
         char* retUsername();
         char* retPassword();
+        char* retClass();
+        bool updateUserRent(char s[]);
+        bool updateUserReturn(char s[]);
     protected:
     private:
         char username[15];
         char password[20];
         char clas[15];
+        char rentBook[20];
+        int status;
         Date birthDate;
         void format();
 };

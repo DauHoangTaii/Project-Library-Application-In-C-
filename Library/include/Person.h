@@ -15,12 +15,13 @@ class Person
         void report();
         void setId();
         int getId();
-        string getName();
+        char* getName();
         void setName();
         int getAge();
         void setAge();
-        string getMail();
+        char* getMail();
         void setMail();
+        void setValueDefaut();
     protected:
 
     private:

@@ -25,10 +25,12 @@ void User::show_user() //show user
     cout << "Password: " << password << endl;
     Person::display();
     cout << "Class: " << clas << endl;
+    cout << "Book renting: " << rentBook << endl;
 }
 
 void User::add_user() //menu add user
 {
+    char null[1] = {'\x00'};
     system("cls");
     cout << "----------------New user-----------------" << endl;
     cin.ignore();
@@ -39,6 +41,8 @@ void User::add_user() //menu add user
     Person::input();
     cout << "Enter class: ";
     cin.getline(clas,15);
+    status = 0;
+    strcpy(rentBook,null);
     format();
 }
 
@@ -197,11 +201,96 @@ void User::write_user()
 	outFile.close();
 }
 
-void User::report()
+bool User::updateUserRent(char s[]) //rent book
+{
+    fstream File;
+    char tempName[50];
+    char tempPass[50];
+    bool found = false;
+    cout << "Enter username of you (username as registered): ";
+    cin.getline(tempName,50);
+    cout << "Enter password of you: ";
+    cin.getline(tempPass,50);
+
+    File.open("user.dat",ios::binary|ios::in|ios::out);
+    while(!File.eof() && found==false)
+    {
+        File.read(reinterpret_cast<char *> (this), sizeof(User));
+        if(strcmp(tempName, retUsername())==0 && strcmp(tempPass,retPassword()) == 0)
+        {
+          if(status==1)
+          {
+            return false;
+          }
+          else
+          {
+            *username = *retUsername();
+            *password = *retPassword();
+            Person::setValueDefaut();
+            for (int i = 0; i < strlen(s); i++)
+            {
+              rentBook[i] = s[i];
+            }
+            *clas = *retClass();
+            status = 1;
+            int pos=(-1)*static_cast<int>(sizeof(User));
+            File.seekp(pos,ios::cur);
+            File.write(reinterpret_cast<char *> (this), sizeof(User));
+            return true;
+          }
+        }
+    }
+    File.close();
+    return false;
+}
+bool User::updateUserReturn(char s[]) // return book
+{
+    fstream File;
+    char tempName[50];
+    char tempPass[50];
+    char null[1] = {'\x00'};
+    bool found = false;
+
+    cout << "Enter username of you (username as registered): ";
+    cin.getline(tempName,50);
+    cout << "Enter password of you: ";
+    cin.getline(tempPass,50);
+
+    File.open("user.dat",ios::binary|ios::in|ios::out);
+    while(!File.eof() && found==false)
+    {
+        File.read(reinterpret_cast<char *> (this), sizeof(User));
+        if(strcmp(tempName, retUsername())==0 && strcmp(tempPass,retPassword())==0)
+        {
+          if(status==0)
+          {
+            return false;
+          }
+          else
+          {
+            *username = *retUsername();
+            *password = *retPassword();
+            Person::setValueDefaut();
+            strcpy(rentBook,null);
+            *clas = *retClass();
+            status = 0;
+            int pos=(-1)*static_cast<int>(sizeof(User));
+            File.seekp(pos,ios::cur);
+            File.write(reinterpret_cast<char *> (this), sizeof(User));
+            return true;
+          }
+        }
+    }
+    File.close();
+    return false;
+}
+
+
+void User::report() //template display
 {
     cout << left << setw(20) << username << "\t" << left << setw(20) << password << "\t" << left << setw(20);
     Person::report();
-    cout << left << setw(20) << clas << endl;
+    cout << left << setw(20) << clas << left << setw(2) << status << left << setw(20) << " " << rentBook << endl;
 //    cout << username << setw(20) << password << setw(23) << getId() << setw(25) << getName() << setw(20) << getAge() << setw(23) << getMail() << setw(20) << clas;
 }
 
@@ -211,9 +300,9 @@ void User::display()
     fp3.open("user.dat",ios::in);
 
 	cout << "\t\t\t\t\t\t\t\t\tUser LIST" << endl;
-	cout << "==========================================================================================================================================================================================\n";
-	cout << left<<setw(20)<<"Username\t"<<left<<setw(20)<<"Password\t"<<left<<setw(20)<<"ID\t"<<left<<setw(20)<<"Name\t"<<left<<setw(20)<<"Age\t"<<left<<setw(35)<<"Mail\t"<<left<<setw(20)<<"Class" << endl;
-	cout << "==========================================================================================================================================================================================\n";
+	cout << "=================================================================================================================================================================================================================\n";
+	cout << left<<setw(20)<<"Username\t"<<left<<setw(20)<<"Password\t"<<left<<setw(20)<<"ID\t"<<left<<setw(20)<<"Name\t"<<left<<setw(20)<<"Age\t"<<left<<setw(35)<<"Mail\t"<<left<<setw(20)<<"Class" << left << setw(2) << "Status" << left << setw(20) << "\t\tRent Book" << endl;
+	cout << "=================================================================================================================================================================================================================\n";
 
 	while(fp3.read(reinterpret_cast<char*>(&us),sizeof(User)))
 	{
@@ -236,6 +325,10 @@ char* User::retPassword()
 int User::retId()
 {
     return Person::getId();
+}
+char* User::retClass()
+{
+    return clas;
 }
 
 void User::format()

@@ -5,6 +5,7 @@
 #include <string.h>
 #include "General.h"
 #include "Dohoa.h"
+#include "User.h"
 using namespace std;
 
 class Book
@@ -21,8 +22,14 @@ class Book
         void display();
         void report();
         int retId();
-        string retName();
+        char* retName();
+        char* retBrand();
+        char* retAuthor();
+        char* retRentUser();
+        int retStatus();
         void format();
+        bool updateRentBook(char s[]);
+        bool updateBookReturn(char s[]);
     protected:
 
     private:
@@ -30,9 +37,8 @@ class Book
         char name[50];
         char brand[50];
         char author[50];
-        char status[15];
-        int year,month,day;
-        long long price;
+        int status;
+        char rentUser[50];
 };
 
 #endif // BOOK_H
