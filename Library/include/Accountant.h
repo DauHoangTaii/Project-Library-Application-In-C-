@@ -10,8 +10,8 @@ class Accountant : public People
     public:
         Accountant();
         virtual ~Accountant();
-        virtual void showInfo();
-        virtual string getDeptName();
+        void showInfo();
+        string getDeptName();
         Accountant(int option,int id,string name,int age,string mail,float basic_salary,float cft_salary);
     protected:
 

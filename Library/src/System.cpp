@@ -387,8 +387,8 @@ void System::menu_employee_manager()
         mne.addEmployee();
         goto loop;
     case 2:
-        cout << "day la cho update";
-        break;
+        mne.updateEmployee();
+        goto loop;
     case 3:
         mne.deleteEmployee();
         goto loop;
@@ -396,8 +396,8 @@ void System::menu_employee_manager()
         mne.showEmployee();
         goto loop;
     case 5:
-        cout << "day la cho show ";
-        break;
+        mne.searchEmployee();
+        goto loop;
     case 6:
         menu_admin_manager();
         break;

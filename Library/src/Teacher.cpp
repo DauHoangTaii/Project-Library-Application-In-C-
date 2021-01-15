@@ -22,14 +22,15 @@ Teacher::Teacher(int option,int id,string name,int age,string mail,float basic_s
 }
 void Teacher::showInfo()
 {
+    cout << "---------------INFORMATION TEACHER---------------" << endl;
     cout << " - Teacher ID: " << this->id << endl;
     cout << " - Teacher Name: " << this->name << endl;
     cout << " - Teacher Age: " << this->age << endl;
     cout << " - Teacher Mail: " << this->mail << endl;
-    cout << " - Post: " << this->getDeptName();
+    cout << " - Post: " << this->getDeptName() << endl;
     cout << " - Basic Salary: " << this->basic_salary << endl;
     cout << " - Coefficients salary: " << this->cft_salary << endl;
-    cout << " - Total Salary: " << this->basic_salary * this->cft_salary;
+    cout << " - Total Salary: " << this->basic_salary * this->cft_salary << endl;
 }
 
 string Teacher::getDeptName()

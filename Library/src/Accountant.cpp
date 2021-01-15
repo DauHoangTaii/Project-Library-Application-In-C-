@@ -11,14 +11,15 @@ Accountant::~Accountant()
 }
 void Accountant::showInfo()
 {
+    cout << "-------------INFORMATION ACCOUNTANT--------------" << endl;
     cout << " - Accountant ID: " << this->id << endl;
     cout << " - Accountant Name: " << this->name << endl;
     cout << " - Accountant Age: " << this->age << endl;
     cout << " - Accountant Mail: " << this->mail << endl;
-    cout << " - Post: " << this->getDeptName();
+    cout << " - Post: " << this->getDeptName() << endl;
     cout << " - Basic Salary: " << this->basic_salary << endl;
     cout << " - Coefficients salary: " << this->cft_salary << endl;
-    cout << " - Total Salary: " << this->basic_salary * this->cft_salary;
+    cout << " - Total Salary: " << this->basic_salary * this->cft_salary << endl;
 }
 
 string Accountant::getDeptName()

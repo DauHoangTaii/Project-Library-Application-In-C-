@@ -2,6 +2,7 @@
 #define PEOPLE_H
 
 #include <iostream>
+#include <fstream>
 using namespace std;
 #include <string>
 
@@ -19,7 +20,6 @@ class People
         float cft_salary;
         virtual void showInfo() = 0;
         virtual string getDeptName() = 0;
-        void input();
     protected:
 
     private:

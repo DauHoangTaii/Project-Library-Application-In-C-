@@ -23,6 +23,7 @@ Book bk;
 
 void Book::addBook() //menu add book
 {
+    loop:
     char null[1] = {'\x00'};
     system("cls");
     cout << "----------New Book----------" << endl;
@@ -32,9 +33,23 @@ void Book::addBook() //menu add book
     {
       cin.clear ();
       cin.ignore( 256, '\n' );
-      cout << "Enter id: ";
+      cout << "Enter id(> 0 and < 9999999): ";
       cin >> id;
     }
+    fstream File;
+    Book bk1;
+    File.open("book.dat",ios::binary|ios::in|ios::out);
+	while(!File.eof())
+	{
+		File.read(reinterpret_cast<char *> (&bk1), sizeof(Book));
+		if(bk1.retId()==id)
+		{
+		    cout << "This ID already exists :(" << endl;
+		    system("pause");
+		    goto loop;
+        }
+	}
+	File.close();
     fflush(stdin);
     do
     {

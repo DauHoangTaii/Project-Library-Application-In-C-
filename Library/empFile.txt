@@ -1,0 +1,2 @@
+1, 23, dau hoang tai, 20, oangtaizxc@gmaail.com, 2000, 0
+2, 456, tran minh huy, 20, huy tan minh, 400, 200

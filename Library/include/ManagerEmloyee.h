@@ -24,8 +24,9 @@ class ManagerEmloyee
         void init_Emp();
         void saveData();
         int IsExist(int id);
-        bool fileIsEmpty;
+        bool fileIsEmpty = false;
         int numEmp;
+        void loadData(ifstream &fi);
         People ** listEmp;
     protected:
 

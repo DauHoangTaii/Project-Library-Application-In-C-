@@ -30,7 +30,9 @@ void User::show_user() //show user
 
 void User::add_user() //menu add user
 {
+    User us1;
     char null[1] = {'\x00'};
+    loop:
     system("cls");
     cout << "----------------New user-----------------" << endl;
     cin.ignore();
@@ -39,6 +41,20 @@ void User::add_user() //menu add user
         cout << "Enter username: ";
         cin.getline(username,15);
     }while(strlen(username) < 1);
+    fstream File;
+    File.open("user.dat",ios::binary|ios::in|ios::out);
+	while(!File.eof())
+	{
+		File.read(reinterpret_cast<char *> (&us1), sizeof(User));
+		if(strcmp(us1.retUsername(),username)==0)
+		{
+		    cout << "This ID already exists :( " << endl;
+		    system("pause");
+		    system("cls");
+		    goto loop;
+        }
+	}
+	File.close();
     do
     {
         cout << "Enter password: ";

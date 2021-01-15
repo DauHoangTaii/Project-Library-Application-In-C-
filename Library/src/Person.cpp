@@ -16,6 +16,7 @@ Person::Person()
 }
 void Person::input()
 {
+    loop:
     cout << "Enter id: ";
     cin >> id;
     while(!cin.good() || id < 0 || id > 9999999)
@@ -25,6 +26,19 @@ void Person::input()
       cout << "Enter id: ";
       cin >> id;
     }
+    fstream File;
+    Person ps;
+    File.open("user.dat",ios::binary|ios::in|ios::out);
+	while(!File.eof())
+	{
+		File.read(reinterpret_cast<char *> (&ps), sizeof(Person));
+		if(ps.getId()==id)
+		{
+		    cout << "This ID already exists :( " << endl;
+		    goto loop;
+        }
+	}
+	File.close();
     fflush(stdin);
     do
     {

@@ -128,9 +128,31 @@ void ManagerEmloyee::showEmployee()
      system("cls");
 }
 
-void ManagerEmloyee::searchEmployee()
+void ManagerEmloyee::searchEmployee() //search
 {
-
+    if (this->fileIsEmpty)
+     {
+        cout << "The file does not save love or the record is empty!" << endl;
+     }
+     else
+     {
+           int id;
+           cout << "Please enter the employee number you are looking for:" << endl;
+           cin >> id;
+           int ret = this->IsExist(id);
+           if (ret != -1)
+           {
+                //Find employees
+                cout << "The search is successful! The employee's information is as follows:" << endl;
+                this->listEmp[ret]->showInfo();
+           }
+           else
+           {
+                cout << "Find failed! No such person found!" << endl;
+           }
+      }
+ system("pause");
+ system("cls");
 }
 
 void ManagerEmloyee::deleteEmployee()
@@ -184,7 +206,77 @@ int ManagerEmloyee::IsExist(int tempId)
 
 void ManagerEmloyee::updateEmployee()
 {
+    if (this->fileIsEmpty)
+     {
+        cout << "The file does not exist or the record is empty!" << endl;
+     }
+     else
+     {
+          cout << "Please enter the employee number to be modified:" << endl;
+          int id;
+          cin >> id;
+          int ret = this->IsExist(id);
 
+          if (ret != -1)//Find employees
+          {
+               delete this->listEmp[ret];
+                int newId;
+                string newName;
+                int newAge;
+                string newMail;
+                float new_basic_salary;
+                float new_cft_salary;
+                int dSelect;
+
+                cout << "Found: " << id << " Employee number, please enter the new employee" << endl;
+                cout << "Please select this employee position" << endl;
+                cout << "********************"
+                cout << "* [1]. Teacher     *" << endl;
+                cout << "*------------------*" << endl;
+                cout << "* [2]. Accountant  *" << endl;
+                coit << "*------------------*" << endl;
+                cout << "********************" << endl
+                cout << "Enter choice: ";
+                cin >> dSelect;
+
+                cout << "Enter id: ";
+                cin >> newId;
+                cin.ignore();
+                cout << "Enter name: ";
+                getline(cin,newName);
+                cout << "Enter age: ";
+                cin >> newAge;
+                cin.ignore();
+                cout << "Enter mail: ";
+                getline(cin,newMail);
+                cout << "Enter basic salary: ";
+                cin >> new_basic_salary;
+                cout << "Enter Coefficients salary: ";
+                cin >> new_cft_salary;
+               People * people = NULL;
+               switch (dSelect)
+               {
+                   case 1:
+                        people = new Teacher(1, newId, newName, newAge, newMail, new_basic_salary, new_cft_salary);
+                        break;
+                   case 2:
+                        people = new Accountant(1, newId, newName, newAge, newMail, new_basic_salary, new_cft_salary);
+                        break;
+                   default:
+                        break;
+               }
+               //update data
+               this->listEmp[ret] = people;
+               cout << "Successfully modified!" << endl;
+               this->saveData(); //Save to file
+          }
+      else
+      {
+       cout << "Modification failed! No such person found!" << endl;
+      }
+     }
+     system("pause");
+     system("cls");
 }
 
 int ManagerEmloyee::get_EmpNum()
@@ -200,7 +292,7 @@ int ManagerEmloyee::get_EmpNum()
      float cft_salary;
      int num = 0;
 
-     while (ifs >> option && ifs >> id && ifs >> name && ifs >> age && ifs >> mail && ifs >> basic_salary && ifs >> cft_salary)
+     while (ifs >> option && ifs.seekg(1,ios_base::cur) && ifs >> id && ifs.seekg(1,ios_base::cur) && getline(ifs,name,',') && ifs >> age && ifs.seekg(1,ios_base::cur) && getline(ifs,mail,',') && ifs >> basic_salary && ifs.seekg(1,ios_base::cur) && ifs >> cft_salary)
      {
       //Count the number of people
       num++;
@@ -208,14 +300,14 @@ int ManagerEmloyee::get_EmpNum()
     return num;
 }
 
-void ManagerEmloyee::saveData()
+void ManagerEmloyee::saveData() //save data
 {
     ofstream ofs;
-    ofs.open(FILENAME, ios::out | ios::app); //Open the file with output-write file
+    ofs.open(FILENAME, ios::out); //Open the file with output-write file
     //Write everyone's data to the file
     for (int i = 0; i < this->numEmp; i++)
     {
-        ofs << this->listEmp[i]->option << ", " << this->listEmp[i]->id << ", "<< this->listEmp[i]->name << ", " << this->listEmp[i]->age << ", " << this->listEmp[i]->mail << ", " << this->listEmp[i]->basic_salary << ", " << this->listEmp[i]->cft_salary << endl;
+        ofs << this->listEmp[i]->option << ", " << this->listEmp[i]->id << ", "<< this->listEmp[i]->name << ", " << this->listEmp[i]->age << ", " << this->listEmp[i]->mail << ", " << this->listEmp[i]->basic_salary << ", " << this->listEmp[i]->cft_salary << "\x00" << endl;
     }
     //Close the file
     ofs.close();
@@ -233,7 +325,7 @@ void ManagerEmloyee::init_Emp()
      float cft_salary;
      int index = 0;
 
-     while (ifs >> option && ifs >> id && ifs >> name && ifs >> age && ifs >> mail && ifs >> basic_salary && ifs >> cft_salary)
+     while (ifs >> option && ifs.seekg(1,ios_base::cur) && ifs >> id && ifs.seekg(1,ios_base::cur) && getline(ifs,name,',') && ifs >> age && ifs.seekg(1,ios_base::cur) && getline(ifs,mail,',') && ifs >> basic_salary && ifs.seekg(1,ios_base::cur) && ifs >> cft_salary)
      {
           People *peole = NULL;
           if (option == 1)
