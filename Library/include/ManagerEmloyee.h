@@ -5,6 +5,7 @@
 #include <string>
 #include "People.h"
 #include "Teacher.h"
+#include "General.h"
 #include "Accountant.h"
 #include <stdlib.h>
 #define FILENAME "empFile.txt"
@@ -27,6 +28,7 @@ class ManagerEmloyee
         bool fileIsEmpty = false;
         int numEmp;
         void loadData(ifstream &fi);
+        void format();
         People ** listEmp;
     protected:
 

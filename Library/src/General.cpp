@@ -72,7 +72,31 @@ void General::upper(char a[], int n)
     for (int i=0; i< n-1; i++)
     if (a[i]==' ' && a[i+1] != ' ') a[i+1]-='a'-'A';
 }
+string General::format_string(string s)
+{
+    //chuan hoa xau, bo dau space thua
+    char a[s.length()];
 
+    for (int i=0; i<=s.length(); i++)    //s[length]='\0'
+    a[i] = s[i];
+
+    int n=s.length();
+    for (int i=0; i<n; i++)
+    {
+        if (a[0]==' ') {
+            remove(a, 0, n);
+        }
+
+        if (a[n-1]==' ') remove(a,n-1, n);
+
+        if (a[i]==' ' && a[i+1]==' ') {
+            remove(a, i, n);
+            i--;
+        }
+    }
+    upper(a,n);
+    return a;
+}
 void General::clearStdin()
 {
     cin.clear();

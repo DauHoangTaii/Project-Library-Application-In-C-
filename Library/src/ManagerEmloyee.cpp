@@ -334,7 +334,7 @@ void ManagerEmloyee::updateEmployee()
                 cin.ignore();
                 do
                 {
-                    cout << "Enter  new name: ";
+                    cout << "Enter new name: ";
                     getline(cin,newName);
                 }while(newName.empty());
                 cout << "Enter age: ";
@@ -408,8 +408,9 @@ int ManagerEmloyee::get_EmpNum()
      float basic_salary;
      float cft_salary;
      int num = 0;
-
-     while (ifs >> option && ifs.seekg(1,ios_base::cur) && ifs >> id && ifs.seekg(1,ios_base::cur) && getline(ifs,name,',') && ifs >> age && ifs.seekg(1,ios_base::cur) && getline(ifs,mail,',') && ifs >> basic_salary && ifs.seekg(1,ios_base::cur) && ifs >> cft_salary)
+        //ifs >> option && ifs >> id && ifs >> name && ifs >>age && ifs >> mail && ifs >> basic_salary && ifs >> cft_salary
+        //ifs >> option && ifs.seekg(1,ios_base::cur) && ifs >> id && ifs.seekg(1,ios_base::cur) && getline(ifs,name,',') && ifs >> age && ifs.seekg(1,ios_base::cur) && getline(ifs,mail,',') && ifs >> basic_salary && ifs.seekg(1,ios_base::cur) && ifs >> cft_salary
+     while (ifs >> option && ifs >> id && ifs >> name && ifs >>age && ifs >> mail && ifs >> basic_salary && ifs >> cft_salary)
      {
       //Count the number of people
       num++;
@@ -424,7 +425,9 @@ void ManagerEmloyee::saveData() //save data
     //Write everyone's data to the file
     for (int i = 0; i < this->numEmp; i++)
     {
-        ofs << this->listEmp[i]->option << ", " << this->listEmp[i]->id << ", "<< this->listEmp[i]->name << ", " << this->listEmp[i]->age << ", " << this->listEmp[i]->mail << ", " << this->listEmp[i]->basic_salary << ", " << this->listEmp[i]->cft_salary << endl;
+        //this->listEmp[i]->option << " " << this->listEmp[i]->id << " "<< this->listEmp[i]->name << " " << this->listEmp[i]->age << " " << this->listEmp[i]->mail << " " << this->listEmp[i]->basic_salary << " " << this->listEmp[i]->cft_salary << endl;
+        //this->listEmp[i]->option << this->listEmp[i]->id << this->listEmp[i]->name << this->listEmp[i]->age << this->listEmp[i]->mail << this->listEmp[i]->basic_salary << this->listEmp[i]->cft_salary << endl;
+        ofs << this->listEmp[i]->option << " " << this->listEmp[i]->id << " "<< this->listEmp[i]->name << " " << this->listEmp[i]->age << " " << this->listEmp[i]->mail << " " << this->listEmp[i]->basic_salary << " " << this->listEmp[i]->cft_salary << endl;
     }
     //Close the file
     ofs.close();
@@ -441,8 +444,9 @@ void ManagerEmloyee::init_Emp()
      float basic_salary;
      float cft_salary;
      int index = 0;
-
-     while (ifs >> option && ifs.seekg(1,ios_base::cur) && ifs >> id && ifs.seekg(1,ios_base::cur) && getline(ifs,name,',') && ifs >> age && ifs.seekg(1,ios_base::cur) && getline(ifs,mail,',') && ifs >> basic_salary && ifs.seekg(1,ios_base::cur) && ifs >> cft_salary)
+    //ifs >> option && ifs >> id && ifs >> name && ifs >>age && ifs >> mail && ifs >> basic_salary && ifs >> cft_salary
+    //ifs >> option && ifs.seekg(1,ios_base::cur) && ifs >> id && ifs.seekg(1,ios_base::cur) && getline(ifs,name,',') && ifs >> age && ifs.seekg(1,ios_base::cur) && getline(ifs,mail,',') && ifs >> basic_salary && ifs.seekg(1,ios_base::cur) && ifs >> cft_salary
+     while (ifs >> option && ifs >> id && ifs >> name && ifs >>age && ifs >> mail && ifs >> basic_salary && ifs >> cft_salary)
      {
           People *peole = NULL;
           if (option == 1)

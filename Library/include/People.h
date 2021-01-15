@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <fstream>
+#include "General.h"
 using namespace std;
 #include <string>
 
@@ -20,6 +21,7 @@ class People
         float cft_salary;
         virtual void showInfo() = 0;
         virtual string getDeptName() = 0;
+        void format();
     protected:
 
     private:

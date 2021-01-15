@@ -9,6 +9,7 @@
 #include "ServiceBook.h"
 #include "ManagerEmloyee.h"
 #include <iostream>
+#include "windows.h"
 using namespace std;
 class System
 {
@@ -18,6 +19,7 @@ class System
         void run();
     protected:
     private:
+        void HideCursor();
         bool login();
         bool login_user();
         void menu_main();

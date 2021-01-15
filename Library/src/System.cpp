@@ -8,7 +8,7 @@
 
 using namespace std;
 
-
+HANDLE color;
 System::System()
 {
     //ctor
@@ -17,11 +17,22 @@ void System::run()
 {
     menu_main();
 }
+void System::HideCursor()
+{
+    HANDLE hOut;
+    CONSOLE_CURSOR_INFO ConCurInf;
+    hOut = GetStdHandle(STD_OUTPUT_HANDLE);
+    ConCurInf.dwSize = 10;
+    ConCurInf.bVisible = FALSE;
+    SetConsoleCursorInfo(hOut, &ConCurInf);
+}
 
 bool System::login()
 {
     char userAdmin[10];
     char passAdmin[10];
+    color = GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleTextAttribute(color, 4);
     cout << "-----------Admin Login----------" << endl;
     cout << "Enter username: ";
     cin >> userAdmin;
@@ -41,7 +52,8 @@ bool System::login_user()
     char user[15];
     char passwd[20];
     int n;
-
+    color = GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleTextAttribute(color, 3);
     cout << "------------------User Login-----------------" << endl;
     cout << "Enter username: ";
     cin.getline(user,15);
@@ -67,30 +79,51 @@ void System::menu_main()
     loop:
     system("cls");
     fflush(stdin);
+    color = GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleTextAttribute(color, rand()%15);
     cout << " _     _ _" << endl;
+    SetConsoleTextAttribute(color, rand()%15);
     cout << "| |   (_) |__   __ _ _ __ __ _ _   _" << endl;
+    SetConsoleTextAttribute(color, rand()%15);
     cout << "| |   | | '_ \\ / _` | '__/ _` | | | |" << endl;
+    SetConsoleTextAttribute(color, rand()%15);
     cout << "| |___| | |_) | (_| | | | (_| | |_| |" << endl;
+    SetConsoleTextAttribute(color, rand()%15);
     cout << "|_____|_|_.__/ \\__,_|_|  \\__,_|\\__, |" << endl;
+    SetConsoleTextAttribute(color, rand()%15);
     cout << "                               |___/" << endl;
+    SetConsoleTextAttribute(color, rand()%15);
     cout << "    _                _ _           _   _" << endl;
+    SetConsoleTextAttribute(color, rand()%15);
     cout << "   / \\   _ __  _ __ | (_) ___ __ _| |_(_) ___  _ __" << endl;
+    SetConsoleTextAttribute(color, rand()%15);
     cout << "  / _ \\ | '_ \\| '_ \\| | |/ __/ _` | __| |/ _ \\| '_ \\" << endl;
+    SetConsoleTextAttribute(color, rand()%15);
     cout << " / ___ \\| |_) | |_) | | | (_| (_| | |_| | (_) | | | |" << endl;
+    SetConsoleTextAttribute(color, rand()%15);
     cout << "/_/   \\_\\ .__/| .__/|_|_|\\___\\__,_|\\__|_|\\___/|_| |_|" << endl;
+    SetConsoleTextAttribute(color, rand()%15);
     cout << "        |_|   |_|" << endl;
+    SetConsoleTextAttribute(color, 3);
     cout << "\n";
     cout << "***************************" << endl;
+    SetConsoleTextAttribute(color, rand()%15);
     cout << "*  [1]. Login With Admin  *" << endl;
+    SetConsoleTextAttribute(color, rand()%15);
     cout << "*-------------------------*" << endl;
+    SetConsoleTextAttribute(color, rand()%15);
     cout << "*  [2]. Login With User   *" << endl;
+    SetConsoleTextAttribute(color, rand()%15);
     cout << "*-------------------------*" << endl;
+    SetConsoleTextAttribute(color, rand()%15);
     cout << "*  [3]. Exit              *" << endl;
+    SetConsoleTextAttribute(color, rand()%15);
     cout << "*-------------------------*" << endl;
+    SetConsoleTextAttribute(color, rand()%15);
     cout << "***************************" << endl;
 
     int choice = -1;
-
+    SetConsoleTextAttribute(color, 14);
     cout << "Enter your choice: ";
     cin >> choice;
     while(choice < 1 || choice > 3)
@@ -139,7 +172,8 @@ void System::menu_admin_manager() // menu of admin
     int choice;
 
     cout << "Admin Login is Successful !!"<<endl;
-
+    color = GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleTextAttribute(color, 14);
     system("pause");
     system("cls");
     loop:

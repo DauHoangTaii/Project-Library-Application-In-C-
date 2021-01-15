@@ -17,13 +17,14 @@
 	<iostream>
 	"System.h"
 
-1610695155 c:\users\admin\desktop\library-application\library\include\system.h
+1610719023 c:\users\admin\desktop\library-application\library\include\system.h
 	"General.h"
 	"ServiceBook.h"
 	"ManagerEmloyee.h"
 	<iostream>
+	"windows.h"
 
-1610709861 source:c:\users\admin\desktop\library-application\library\src\system.cpp
+1610719852 source:c:\users\admin\desktop\library-application\library\src\system.cpp
 	"System.h"
 	<iostream>
 	<stdlib.h>
@@ -99,11 +100,11 @@
 1609822757 source:c:\users\admin\desktop\library-application\library\src\date.cpp
 	"Date.h"
 
-1610298202 source:c:\users\admin\desktop\library-application\library\src\general.cpp
+1610720695 source:c:\users\admin\desktop\library-application\library\src\general.cpp
 	"General.h"
 	<string.h>
 
-1610297783 c:\users\admin\desktop\library-application\library\include\general.h
+1610720666 c:\users\admin\desktop\library-application\library\include\general.h
 	<string>
 	<iostream>
 	<stdio.h>
@@ -125,12 +126,13 @@
 	"User.h"
 	"Book.h"
 
-1610707746 source:c:\users\admin\desktop\library-application\library\src\people.cpp
+1610720705 source:c:\users\admin\desktop\library-application\library\src\people.cpp
 	"People.h"
 
-1610707749 c:\users\admin\desktop\library-application\library\include\people.h
+1610720358 c:\users\admin\desktop\library-application\library\include\people.h
 	<iostream>
 	<fstream>
+	"General.h"
 	<string>
 
 1610707909 source:c:\users\admin\desktop\library-application\library\src\teacher.cpp
@@ -149,16 +151,17 @@
 	<string>
 	"People.h"
 
-1610717349 source:c:\users\admin\desktop\library-application\library\src\manageremloyee.cpp
+1610720745 source:c:\users\admin\desktop\library-application\library\src\manageremloyee.cpp
 	"ManagerEmloyee.h"
 	<string.h>
 
-1610716807 c:\users\admin\desktop\library-application\library\include\manageremloyee.h
+1610720776 c:\users\admin\desktop\library-application\library\include\manageremloyee.h
 	<iostream>
 	<fstream>
 	<string>
 	"People.h"
 	"Teacher.h"
+	"General.h"
 	"Accountant.h"
 	<stdlib.h>
 

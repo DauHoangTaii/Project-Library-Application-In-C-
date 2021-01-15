@@ -15,6 +15,7 @@ namespace General
     void upperTitle(char a[],int n);
     char* format(char a[]);
     void clearStdin();
+    string format_string(string s);
 }
 
 #endif // GENERAL_H
