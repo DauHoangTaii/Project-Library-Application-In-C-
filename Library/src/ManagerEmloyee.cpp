@@ -1,5 +1,5 @@
 #include "ManagerEmloyee.h"
-
+#include <string.h>
 ManagerEmloyee::ManagerEmloyee()
 {
      ifstream ifs;
@@ -36,9 +36,17 @@ ManagerEmloyee::~ManagerEmloyee()
 }
 void ManagerEmloyee::addEmployee()
 {
-    cout << "Please enter the number of employees added:" << endl;
+    loop:
+    system("cls");
+    cout << "Enter the number of employees added: ";
     int addNum = 0;  //Save the number of user input
     cin >> addNum;
+    while(!cin.good() || addNum < 0)
+    {
+      cin.clear ();
+      cin.ignore( 256, '\n' );
+      goto loop;
+    }
     if(addNum > 0)
     {
         int newSize = this->numEmp + addNum;
@@ -61,26 +69,71 @@ void ManagerEmloyee::addEmployee()
             float cft_salary;
             int dSelect;
 
-            cout << "Please select this employee position" << endl;
-            cout << "1. Teacher" << endl;
-            cout << "2. Accountant" << endl;
-            cin >> dSelect;
+            cout << "---Select this employee position---" << endl;
+                cout << "********************" << endl;
+                cout << "* [1]. Teacher     *" << endl;
+                cout << "*------------------*" << endl;
+                cout << "* [2]. Accountant  *" << endl;
+                cout << "*------------------*" << endl;
+                cout << "********************" << endl;
+                cout << "Enter choice(> 0 and < 2): ";
+                cin >> dSelect;
+                while(!cin.good() || dSelect < 0 || dSelect > 2)
+                {
+                  cin.clear ();
+                  cin.ignore( 256, '\n' );
+                  cout << "Enter choice(> 0 and < 2): ";
+                  cin >> dSelect;
+                }
 
-            cout << "Employee " << i+1 << endl;
-            cout << "Enter id: ";
-            cin >> id;
-            cin.ignore();
-            cout << "Enter name: ";
-            getline(cin,name);
-            cout << "Enter age: ";
-            cin >> age;
-            cin.ignore();
-            cout << "Enter mail: ";
-            getline(cin,mail);
-            cout << "Enter basic salary: ";
-            cin >> basic_salary;
-            cout << "Enter Coefficients salary: ";
-            cin >> cft_salary;
+                cout << "Enter id: ";
+                cin >> id;
+                while(!cin.good() || id < 0 || id > 9999999)
+                {
+                  cin.clear ();
+                  cin.ignore( 256, '\n' );
+                  cout << "Enter New ID(> 0 and < 9999999): ";
+                  cin >> id;
+                }
+                cin.ignore();
+                do
+                {
+                    cout << "Enter name: ";
+                    getline(cin,name);
+                }while(name.empty());
+                cout << "Enter age: ";
+                cin >> age;
+                while(!cin.good() || age < 0)
+                {
+                    cin.clear ();
+                    cin.ignore( 256, '\n' );
+                    cout << "Enter age: ";
+                    cin >> age;
+                }
+                cin.ignore();
+                do
+                {
+                    cout << "Enter mail: ";
+                    getline(cin,mail);
+                }while(mail.empty());
+                cout << "Enter basic salary: ";
+                cin >> basic_salary;
+                while(!cin.good() || basic_salary < 0)
+                {
+                    cin.clear ();
+                    cin.ignore( 256, '\n' );
+                    cout << "Enter basic salary: ";
+                    cin >> basic_salary;
+                }
+                cout << "Enter Coefficients salary: ";
+                cin >> cft_salary;
+                while(!cin.good() || cft_salary < 0)
+                {
+                    cin.clear ();
+                    cin.ignore( 256, '\n' );
+                    cout << "Enter Coefficients salary: ";
+                    cin >> cft_salary;
+                }
             People * people = NULL;
             switch (dSelect)
             {
@@ -136,9 +189,16 @@ void ManagerEmloyee::searchEmployee() //search
      }
      else
      {
+           loop:
            int id;
            cout << "Please enter the employee number you are looking for:" << endl;
            cin >> id;
+           while(!cin.good() || id < 0 || id > 9999999)
+            {
+              cin.clear ();
+              cin.ignore( 256, '\n' );
+              goto loop;
+            }
            int ret = this->IsExist(id);
            if (ret != -1)
            {
@@ -163,10 +223,18 @@ void ManagerEmloyee::deleteEmployee()
      }
      else
      {
+          loop:
+          system("cls");
           //Delete employees by number
-          cout << "Please enter the employee number you want to delete:" << endl;
+          cout << "Please enter the employee ID you want to delete:" << endl;
           int id = 0;
           cin >> id;
+          while(!cin.good() || id < 0 || id > 9999999)
+            {
+              cin.clear ();
+              cin.ignore( 256, '\n' );
+              goto loop;
+            }
           int index = this->IsExist(id);
           if (index != -1) //The employee exists, and the employee at the index position is to be deleted
           {
@@ -178,7 +246,7 @@ void ManagerEmloyee::deleteEmployee()
                this->numEmp--;//Update the number of personnel recorded in the array
                //Sync update to file
                this->saveData();
-               cout << "successfully deleted!" << endl;
+               cout << "Successfully deleted!" << endl;
         }
         else
         {
@@ -212,9 +280,16 @@ void ManagerEmloyee::updateEmployee()
      }
      else
      {
-          cout << "Please enter the employee number to be modified:" << endl;
+         loop:
+          cout << "Please enter the employee ID to be modified:" << endl;
           int id;
           cin >> id;
+          while(!cin.good() || id < 0 || id > 9999999)
+            {
+              cin.clear ();
+              cin.ignore( 256, '\n' );
+              goto loop;
+            }
           int ret = this->IsExist(id);
 
           if (ret != -1)//Find employees
@@ -228,31 +303,73 @@ void ManagerEmloyee::updateEmployee()
                 float new_cft_salary;
                 int dSelect;
 
-                cout << "Found: " << id << " Employee number, please enter the new employee" << endl;
+                cout << "Found: " << id << " Employee ID, please enter the new employee !!" << endl;
+                cout << "----------------MODIFIED------------" << endl;
                 cout << "Please select this employee position" << endl;
-                cout << "********************"
+                cout << "********************" << endl;
                 cout << "* [1]. Teacher     *" << endl;
                 cout << "*------------------*" << endl;
                 cout << "* [2]. Accountant  *" << endl;
-                coit << "*------------------*" << endl;
-                cout << "********************" << endl
-                cout << "Enter choice: ";
+                cout << "*------------------*" << endl;
+                cout << "********************" << endl;
+                cout << "Enter choice(> 0 and < 2): ";
                 cin >> dSelect;
+                while(!cin.good() || dSelect < 0 || id > 2)
+                {
+                  cin.clear ();
+                  cin.ignore( 256, '\n' );
+                  cout << "Enter choice(> 0 and < 2): ";
+                  cin >> dSelect;
+                }
 
                 cout << "Enter id: ";
                 cin >> newId;
+                while(!cin.good() || newId < 0 || newId > 9999999)
+                {
+                  cin.clear ();
+                  cin.ignore( 256, '\n' );
+                  cout << "Enter New ID(> 0 and < 9999999): ";
+                  cin >> newId;
+                }
                 cin.ignore();
-                cout << "Enter name: ";
-                getline(cin,newName);
+                do
+                {
+                    cout << "Enter  new name: ";
+                    getline(cin,newName);
+                }while(newName.empty());
                 cout << "Enter age: ";
                 cin >> newAge;
+                while(!cin.good() || newAge < 0)
+                {
+                    cin.clear ();
+                    cin.ignore( 256, '\n' );
+                    cout << "Enter age: ";
+                    cin >> newAge;
+                }
                 cin.ignore();
-                cout << "Enter mail: ";
-                getline(cin,newMail);
+                do
+                {
+                    cout << "Enter mail: ";
+                    getline(cin,newMail);
+                }while(newMail.empty());
                 cout << "Enter basic salary: ";
                 cin >> new_basic_salary;
+                while(!cin.good() || new_basic_salary < 0)
+                {
+                    cin.clear ();
+                    cin.ignore( 256, '\n' );
+                    cout << "Enter basic salary: ";
+                    cin >> new_basic_salary;
+                }
                 cout << "Enter Coefficients salary: ";
                 cin >> new_cft_salary;
+                while(!cin.good() || new_cft_salary < 0)
+                {
+                    cin.clear ();
+                    cin.ignore( 256, '\n' );
+                    cout << "Enter Coefficients salary: ";
+                    cin >> new_cft_salary;
+                }
                People * people = NULL;
                switch (dSelect)
                {
@@ -307,7 +424,7 @@ void ManagerEmloyee::saveData() //save data
     //Write everyone's data to the file
     for (int i = 0; i < this->numEmp; i++)
     {
-        ofs << this->listEmp[i]->option << ", " << this->listEmp[i]->id << ", "<< this->listEmp[i]->name << ", " << this->listEmp[i]->age << ", " << this->listEmp[i]->mail << ", " << this->listEmp[i]->basic_salary << ", " << this->listEmp[i]->cft_salary << "\x00" << endl;
+        ofs << this->listEmp[i]->option << ", " << this->listEmp[i]->id << ", "<< this->listEmp[i]->name << ", " << this->listEmp[i]->age << ", " << this->listEmp[i]->mail << ", " << this->listEmp[i]->basic_salary << ", " << this->listEmp[i]->cft_salary << endl;
     }
     //Close the file
     ofs.close();

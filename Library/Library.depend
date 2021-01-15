@@ -149,10 +149,11 @@
 	<string>
 	"People.h"
 
-1610715312 source:c:\users\admin\desktop\library-application\library\src\manageremloyee.cpp
+1610717349 source:c:\users\admin\desktop\library-application\library\src\manageremloyee.cpp
 	"ManagerEmloyee.h"
+	<string.h>
 
-1610710177 c:\users\admin\desktop\library-application\library\include\manageremloyee.h
+1610716807 c:\users\admin\desktop\library-application\library\include\manageremloyee.h
 	<iostream>
 	<fstream>
 	<string>
