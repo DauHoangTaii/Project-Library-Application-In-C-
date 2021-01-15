@@ -10,7 +10,7 @@
 #include <cstdio>
 
 using namespace std;
-
+HANDLE color2;
 User us;
 fstream fp3;
 
@@ -326,12 +326,13 @@ void User::display()
 {
     system("cls");
     fp3.open("user.dat",ios::in);
-
+    color2 = GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleTextAttribute(color2, 12);
 	cout << "\t\t\t\t\t\t\t\t\tUser LIST" << endl;
 	cout << "=================================================================================================================================================================================================================\n";
 	cout << left<<setw(20)<<"Username\t"<<left<<setw(20)<<"Password\t"<<left<<setw(20)<<"ID\t"<<left<<setw(20)<<"Name\t"<<left<<setw(20)<<"Age\t"<<left<<setw(35)<<"Mail\t"<<left<<setw(20)<<"Class" << left << setw(2) << "Status" << left << setw(20) << "\t\tRent Book" << endl;
 	cout << "=================================================================================================================================================================================================================\n";
-
+    SetConsoleTextAttribute(color2, 14);
 	while(fp3.read(reinterpret_cast<char*>(&us),sizeof(User)))
 	{
 		us.report();

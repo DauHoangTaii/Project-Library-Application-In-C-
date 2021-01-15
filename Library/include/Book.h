@@ -6,6 +6,7 @@
 #include "General.h"
 #include "Dohoa.h"
 #include "User.h"
+#include "windows.h"
 using namespace std;
 
 class Book
@@ -30,6 +31,7 @@ class Book
         void format();
         bool updateRentBook(char s[]);
         bool updateBookReturn(char s[]);
+        void HideCursor();
     protected:
 
     private:

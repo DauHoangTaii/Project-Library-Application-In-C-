@@ -4,6 +4,7 @@
 #include "Date.h"
 #include "General.h"
 #include <iostream>
+#include <windows.h>
 using namespace std;
 
 class User:public Person

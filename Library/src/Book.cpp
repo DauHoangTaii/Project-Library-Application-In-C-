@@ -10,7 +10,7 @@
 #include "Dohoa.h"
 
 using namespace std;
-
+HANDLE color1;
 Book::Book()
 {
 
@@ -252,11 +252,13 @@ void Book::display()  //display book in screen
 		return;
 	}
 	//Dohoa::setColor(2);
+	color1 = GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleTextAttribute(color1, 12);
 	cout << "\t\t\t\t\t\t\tBook LIST" << endl;
 	cout << "========================================================================================================\n";
 	cout << left<<setw(10)<<"Book ID"<<left<<setw(25)<<"Book Name"<<left<<setw(15)<<"Book brand"<<left<<setw(20)<<"Book Author" << left << setw(2) << "\tStatus" << left<<setw(20)<<"\tUser Renting" << endl;
 	cout << "========================================================================================================\n";
-
+    SetConsoleTextAttribute(color1, 14);
 	while(inFile.read(reinterpret_cast<char*>(&bk),sizeof(Book)))
 	{
 		bk.report();
