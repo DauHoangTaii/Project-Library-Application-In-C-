@@ -7,6 +7,7 @@
 #define USERPASSWORD "user123"
 #include "General.h"
 #include "ServiceBook.h"
+#include "ManagerEmloyee.h"
 #include <iostream>
 using namespace std;
 class System
@@ -24,7 +25,7 @@ class System
         void menu_user_manager();
         void menu_book_manager();
         void menu_user();
-        void menu_worker_manager();
+        void menu_employee_manager();
         void format();
 };
 

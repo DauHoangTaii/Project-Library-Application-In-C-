@@ -26,15 +26,31 @@ void Book::addBook() //menu add book
     char null[1] = {'\x00'};
     system("cls");
     cout << "----------New Book----------" << endl;
-    cout << "Enter id: ";
+    cout << "Enter id (> 0 and < 9999999): ";
     cin >> id;
+    while(!cin.good() || id < 0 || id > 9999999)
+    {
+      cin.clear ();
+      cin.ignore( 256, '\n' );
+      cout << "Enter id: ";
+      cin >> id;
+    }
     fflush(stdin);
-    cout << "Enter book name: ";
-    cin.getline(name,50);
-    cout << "Enter book brand: ";
-    cin.getline(brand,50);
-    cout << "Enter book author: ";
-    cin.getline(author,50);
+    do
+    {
+        cout << "Enter book name: ";
+        cin.getline(name,50);
+    }while(strlen(name) < 1);
+    do
+    {
+        cout << "Enter book brand: ";
+        cin.getline(brand,50);
+    }while(strlen(brand) < 1);
+    do
+    {
+        cout << "Enter book author: ";
+        cin.getline(author,50);
+    }while(strlen(author) < 1);
     strcpy(rentUser,null);
     status = 0;
     format();
@@ -177,7 +193,7 @@ void Book::searchBook() //search book with id and name
 	while(!File.eof() && found==false)
 	{
 		File.read(reinterpret_cast<char *> (&bk), sizeof(Book));
-		if(bk.retId()==n)
+		if(bk.retId()==n && bk.retName() == s)
 		{
 		    system("cls");
 			bk.showBook();

@@ -79,9 +79,15 @@ void System::menu_main()
     cout << " / ___ \\| |_) | |_) | | | (_| (_| | |_| | (_) | | | |" << endl;
     cout << "/_/   \\_\\ .__/| .__/|_|_|\\___\\__,_|\\__|_|\\___/|_| |_|" << endl;
     cout << "        |_|   |_|" << endl;
-    cout << "[1]. Login With Admin " << endl;
-    cout << "[2]. Login With User " << endl;
-    cout << "[3]. Exit " << endl;
+    cout << "\n";
+    cout << "***************************" << endl;
+    cout << "*  [1]. Login With Admin  *" << endl;
+    cout << "*-------------------------*" << endl;
+    cout << "*  [2]. Login With User   *" << endl;
+    cout << "*-------------------------*" << endl;
+    cout << "*  [3]. Exit              *" << endl;
+    cout << "*-------------------------*" << endl;
+    cout << "***************************" << endl;
 
     int choice = -1;
 
@@ -136,11 +142,11 @@ void System::menu_admin_manager() // menu of admin
 
     system("pause");
     system("cls");
-
+    loop:
     cout << "---------------Admin Manager-----------------" << endl;
     cout << "[1]. Book Manager" << endl;
     cout << "[2]. User Manager" << endl;
-    cout << "[3]. Worker Manager" << endl;
+    cout << "[3]. Employee Manager" << endl;
     cout << "[4]. Logout" << endl;
 
     cout << "Enter your choice: ";
@@ -151,6 +157,9 @@ void System::menu_admin_manager() // menu of admin
         cin.clear();
         fflush(stdin);
         cout << "Error: Invalid Choice. Please try again!" << endl;
+        system("pause");
+        system("cls");
+        goto loop;
         cout << "Enter your choice: ";
         cin >> choice;
     }
@@ -164,7 +173,7 @@ void System::menu_admin_manager() // menu of admin
         menu_user_manager();
         break;
     case 3:
-        menu_worker_manager();
+        menu_employee_manager();
         break;
     case 4:
         menu_main();
@@ -193,6 +202,9 @@ void System::menu_user_manager() // menu manager user
         cin.clear();
         fflush(stdin);
         cout << "Error: Invalid Choice. Please try again!" << endl;
+        system("pause");
+        system("cls");
+        goto loop;
         cout << "Enter your choice: ";
         cin >> choice;
     }
@@ -251,6 +263,8 @@ void System::menu_user() // menu to rent book
         cin.clear();
         fflush(stdin);
         cout << "Error: Invalid Choice. Please try again!" << endl;
+        system("pause");
+        goto loop;
         cout << "Enter your choice: ";
         cin >> choice;
     }
@@ -300,6 +314,8 @@ void System::menu_book_manager()
         cin.clear();
         fflush(stdin);
         cout << "Error: Invalid Choice. Please try again!" << endl;
+        system("pause");
+        goto loop;
         cout << "Enter your choice: ";
         cin >> choice;
     }
@@ -339,8 +355,9 @@ void System::menu_book_manager()
     }
 
 }
-void System::menu_worker_manager()
+void System::menu_employee_manager()
 {
+    loop:
     int choice;
 
     system("cls");
@@ -350,41 +367,43 @@ void System::menu_worker_manager()
     cout << "[4]. Show employee" << endl;
     cout << "[5]. Search employee" << endl;
     cout << "[6]. Back" << endl;
-    cout << "[0]. Exit" << endl;
+    cout << "[7]. Exit" << endl;
 
     cout << "Enter your choice: ";
     cin >> choice;
 
-    while(choice < 0 || choice > 6)
+    while(choice < 1 || choice > 7)
     {
         cout << "Error: Invalid Choice. Please try again!" << endl;
+        system("pause");
+        goto loop;
         cout << "Enter your choice: ";
         cin >> choice;
     }
-
+    ManagerEmloyee mne;
     switch(choice)
     {
-    case 0:
-        cout << "Thank you for using it !!";
-        exit(0);
     case 1:
-        cout << "Day la cho add";
-        break;
+        mne.addEmployee();
+        goto loop;
     case 2:
         cout << "day la cho update";
         break;
     case 3:
-        cout << "day la cho delete";
-        break;
+        mne.deleteEmployee();
+        goto loop;
     case 4:
-        cout << "day la cho search";
-        break;
+        mne.showEmployee();
+        goto loop;
     case 5:
         cout << "day la cho show ";
         break;
     case 6:
         menu_admin_manager();
         break;
+    case 7:
+        cout << "Thank you for using it !!";
+        exit(0);
     }
 }
 

@@ -18,14 +18,34 @@ void Person::input()
 {
     cout << "Enter id: ";
     cin >> id;
+    while(!cin.good() || id < 0 || id > 9999999)
+    {
+      cin.clear ();
+      cin.ignore( 256, '\n' );
+      cout << "Enter id: ";
+      cin >> id;
+    }
     fflush(stdin);
-    cout << "Enter name: ";
-    cin.getline(name,50);
+    do
+    {
+        cout << "Enter name: ";
+        cin.getline(name,50);
+    }while(strlen(name) < 1);
     cout << "Enter age: ";
     cin >> age;
+    while(!cin.good() || age < 0)
+    {
+      cin.clear ();
+      cin.ignore( 256, '\n' );
+      cout << "Enter age: ";
+      cin >> age;
+    }
     fflush(stdin);
-    cout << "Enter mail: ";
-    cin.getline(mail,50);
+    do
+    {
+        cout << "Enter mail: ";
+        cin.getline(mail,50);
+    }while(strlen(mail) < 1);
     format();
 }
 

@@ -1,0 +1,22 @@
+#ifndef ACCOUNTANT_H
+#define ACCOUNTANT_H
+
+#include <iostream>
+#include <string>
+#include "People.h"
+using namespace std;
+class Accountant : public People
+{
+    public:
+        Accountant();
+        virtual ~Accountant();
+        virtual void showInfo();
+        virtual string getDeptName();
+        Accountant(int option,int id,string name,int age,string mail,float basic_salary,float cft_salary);
+    protected:
+
+    private:
+        float bonus;
+};
+
+#endif // ACCOUNTANT_H

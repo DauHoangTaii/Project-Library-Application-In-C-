@@ -1,0 +1,38 @@
+#include "Teacher.h"
+
+Teacher::Teacher()
+{
+    //ctor
+}
+
+Teacher::~Teacher()
+{
+    //dtor
+}
+
+Teacher::Teacher(int option,int id,string name,int age,string mail,float basic_salary,float cft_salary)
+{
+    this->option = option;
+    this->id = id;
+    this->name = name;
+    this->age = age;
+    this->mail = mail;
+    this->basic_salary = basic_salary;
+    this->cft_salary = cft_salary;
+}
+void Teacher::showInfo()
+{
+    cout << " - Teacher ID: " << this->id << endl;
+    cout << " - Teacher Name: " << this->name << endl;
+    cout << " - Teacher Age: " << this->age << endl;
+    cout << " - Teacher Mail: " << this->mail << endl;
+    cout << " - Post: " << this->getDeptName();
+    cout << " - Basic Salary: " << this->basic_salary << endl;
+    cout << " - Coefficients salary: " << this->cft_salary << endl;
+    cout << " - Total Salary: " << this->basic_salary * this->cft_salary;
+}
+
+string Teacher::getDeptName()
+{
+    return string("Teacher");
+}

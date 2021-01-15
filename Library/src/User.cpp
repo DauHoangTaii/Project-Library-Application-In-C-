@@ -34,13 +34,22 @@ void User::add_user() //menu add user
     system("cls");
     cout << "----------------New user-----------------" << endl;
     cin.ignore();
-    cout << "Enter username: ";
-    cin.getline(username,15);
-    cout << "Enter password: ";
-    cin.getline(password,20);
+    do
+    {
+        cout << "Enter username: ";
+        cin.getline(username,15);
+    }while(strlen(username) < 1);
+    do
+    {
+        cout << "Enter password: ";
+        cin.getline(password,20);
+    }while(strlen(password) < 1);
     Person::input();
-    cout << "Enter class: ";
-    cin.getline(clas,15);
+    do
+    {
+        cout << "Enter class: ";
+        cin.getline(clas,15);
+    }while(strlen(clas) < 1);
     status = 0;
     strcpy(rentBook,null);
     format();
@@ -96,7 +105,10 @@ void User::update_user() //update user in file
 	}
 	File.close();
 	if(found==false)
-		cout<<"Record Not Found ";
+    {
+        cout<<"Record Not Found ";
+        system("pause");
+    }
 }
 
 void User::delete_user() // delete user in file
@@ -131,7 +143,7 @@ void User::delete_user() // delete user in file
 	inFile.seekg(0,ios::beg);
 	while(inFile.read(reinterpret_cast<char *> (&us), sizeof(User)))
 	{
-		if(us.retId()!=n && us.retUsername()!=s)
+		if(us.retUsername()!=s && us.retId()!=n)
 		{
 			outFile.write(reinterpret_cast<char *> (&us), sizeof(User));
 		}
