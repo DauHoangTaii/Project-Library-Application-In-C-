@@ -17,7 +17,7 @@ void ServiceBook::rentBook() // rent book
     }
     else
     {
-        cout << "Please check the book information :(" << endl;
+        cout << "Please check the book information or you information :(" << endl;
         system("pause");
     }
 }
@@ -35,7 +35,7 @@ void ServiceBook::returnBook() // return book
     }
     else
     {
-        cout << "Please check the book information :(" << endl;
+        cout << "Please check the book information or you information :(" << endl;
         system("pause");
     }
 }

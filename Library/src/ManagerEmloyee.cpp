@@ -172,6 +172,8 @@ void ManagerEmloyee::showEmployee()
      }
      else
      {
+         system("cls");
+         cout << "[ There are " << numEmp << " Employee ]" << endl;
         for (int i = 0; i < numEmp; i++)
           {
             this->listEmp[i]->showInfo();

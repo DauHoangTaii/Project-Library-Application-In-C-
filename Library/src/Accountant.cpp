@@ -17,9 +17,9 @@ void Accountant::showInfo()
     cout << " - Accountant Age: " << this->age << endl;
     cout << " - Accountant Mail: " << this->mail << endl;
     cout << " - Post: " << this->getDeptName() << endl;
-    cout << " - Basic Salary: " << this->basic_salary << endl;
-    cout << " - Coefficients salary: " << this->cft_salary << endl;
-    cout << " - Total Salary: " << this->basic_salary * this->cft_salary << endl;
+    cout << " - Basic Salary: " << (size_t)(this->basic_salary) << endl;
+    cout << " - Coefficients salary: " << (size_t)(this->cft_salary) << endl;
+    cout << " - Total Salary: " << (size_t)(this->basic_salary * this->cft_salary) << endl;
 }
 
 string Accountant::getDeptName()
