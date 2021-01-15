@@ -34,18 +34,28 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="include/Accountant.h" />
 		<Unit filename="include/Book.h" />
 		<Unit filename="include/Date.h" />
 		<Unit filename="include/General.h" />
+		<Unit filename="include/ManagerEmloyee.h" />
+		<Unit filename="include/People.h" />
 		<Unit filename="include/Person.h" />
+		<Unit filename="include/ServiceBook.h" />
 		<Unit filename="include/System.h" />
+		<Unit filename="include/Teacher.h" />
 		<Unit filename="include/User.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="src/Accountant.cpp" />
 		<Unit filename="src/Book.cpp" />
 		<Unit filename="src/Date.cpp" />
 		<Unit filename="src/General.cpp" />
+		<Unit filename="src/ManagerEmloyee.cpp" />
+		<Unit filename="src/People.cpp" />
 		<Unit filename="src/Person.cpp" />
+		<Unit filename="src/ServiceBook.cpp" />
 		<Unit filename="src/System.cpp" />
+		<Unit filename="src/Teacher.cpp" />
 		<Unit filename="src/User.cpp" />
 		<Extensions>
 			<code_completion />

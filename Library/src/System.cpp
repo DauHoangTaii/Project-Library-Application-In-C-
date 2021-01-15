@@ -250,6 +250,7 @@ void System::menu_user_manager() // menu manager user
         char c;
         do
         {
+        system("cls");
          us.write_user();
          cout << "Do you add more user..(y/n?): ";
          cin >> c;
@@ -360,6 +361,7 @@ void System::menu_book_manager()
         char c;
         do
         {
+            system("cls");
             bk.wirteBook();
             cout << "Do you add more book..(y/n?): ";
             cin >> c;

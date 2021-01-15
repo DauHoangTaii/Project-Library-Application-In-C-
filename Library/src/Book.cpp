@@ -95,7 +95,7 @@ void Book::updateBook() //update book with id and name in file
 	cin.ignore();
     cout << "Enter name of book update: ";
     getline(cin,s);
-
+    system("cls");
     File.open("book.dat",ios::binary|ios::in|ios::out);
 	if(!File)
 	{
@@ -107,10 +107,12 @@ void Book::updateBook() //update book with id and name in file
 		File.read(reinterpret_cast<char *> (&bk), sizeof(Book));
 		if(bk.retId()==n && bk.retName()==s)
 		{
-		    cout << "Current data" << endl;
+		    cout << "[ CURRENT DATA ]" << endl;
 			bk.showBook();
 			system("pause");
-			cout << "Enter The New Details of Book"<<endl;
+			cout << endl << endl;
+			cout << "---Enter The New Details of Book---"<<endl;
+			system("pause");
 			bk.addBook();
 			int pos=(-1)*static_cast<int>(sizeof(Book));
 			File.seekp(pos,ios::cur);

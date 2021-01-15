@@ -33,7 +33,6 @@ void User::add_user() //menu add user
     User us1;
     char null[1] = {'\x00'};
     loop:
-    system("cls");
     cout << "----------------New user-----------------" << endl;
     cin.ignore();
     do
@@ -106,10 +105,11 @@ void User::update_user() //update user in file
 		File.read(reinterpret_cast<char *> (&us), sizeof(User));
 		if(us.retId()==n && us.retUsername() == s)
 		{
-		    cout << "Current data" << endl;
+		    cout << "\n\n[CURRENT DATA]" << endl;
 			us.show_user();
 			system("pause");
-			cout << "Enter The New Details of User"<<endl;
+			cout << endl << endl;
+			cout << "---Enter The New Details of User---"<<endl;
 			us.add_user();
 			int pos=(-1)*static_cast<int>(sizeof(User));
 			File.seekp(pos,ios::cur);
